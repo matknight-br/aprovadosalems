@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comissão de Aprovados - ALMS | Transparência</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3; /* Azul escuro formal */
+            --secondary-color: #ff9800; /* Laranja para destaque/alerta */
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Cabeçalho e Navegação */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav button:hover, nav button.active {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Conteúdo das Páginas */
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .page {
+            display: none; /* Oculta todas as páginas por padrão */
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s;
+        }
+
+        .page.active {
+            display: block; /* Mostra apenas a página ativa */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #fff3e0;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Gráfico */
+        .chart-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Comissão de Aprovados - ALMS</h1>
+        <p>Em defesa da transparência e do provimento efetivo no serviço público</p>
+        <nav>
+            <button onclick="showPage('home')" class="active" id="btn-home">A Luta</button>
+            <button onclick="showPage('raio-x')" id="btn-raio-x">O Raio-X (Dados)</button>
+            <button onclick="showPage('comissionados')" id="btn-comissionados">A Farra das Comissões</button>
+            <button onclick="showPage('efetivos')" id="btn-efetivos">O Nosso Direito (Efetivos)</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page active">
+            <h2>Nossa Luta por Transparência e Legalidade</h2>
+            <p>Bem-vindo à plataforma oficial da Comissão de Aprovados do concurso da Assembleia Legislativa do Estado de Mato Grosso do Sul (ALMS). Nossa missão é garantir que o princípio constitucional do concurso público seja respeitado.</p>
+            
+            <div class="highlight-box">
+                <strong>O Problema:</strong> Hoje, a estrutura da ALMS é sustentada por uma base gigantesca de cargos de livre nomeação (comissionados), enquanto os aprovados em concurso público aguardam a posse de vagas que lhes são de direito.
+            </div>
+
+            <p>A Lei 6.279 estabelece o Plano de Cargos, Carreira e Remuneração. Analisando friamente os anexos desta lei, a discrepância salta aos olhos. Este site foi criado para expor esses dados à população, à imprensa e aos órgãos de controle.</p>
+            <p>Navegue pelas abas acima para conferir os dados oficiais extraídos da própria legislação.</p>
+        </section>
+
+        <section id="raio-x" class="page">
+            <h2>O Raio-X da ALMS: Comissionados vs. Efetivos</h2>
+            <p>Segundo o Anexo I da Lei 6.279, a estrutura da Assembleia prevê um número assustadoramente maior de cargos de livre nomeação do que de servidores efetivos (concursados). Veja a proporção legal criada:</p>
+            
+            <div class="chart-container">
+                <canvas id="meuGrafico"></canvas>
+            </div>
+
+            <p><em>* Os dados referem-se ao total de vagas criadas pela Lei 6.279. O próximo passo da nossa comissão é cruzar essas vagas legais com a ocupação real atual no Portal da Transparência, para expor o número exato de vacâncias não preenchidas pelos aprovados.</em></p>
+        </section>
+
+        <section id="comissionados" class="page">
+            <h2>O Excesso de Cargos em Comissão</h2>
+            <p>A Lei 6.279 estrutura uma quantidade massiva de vagas que dispensam aprovação em concurso público. Abaixo, detalhamos onde estão alocadas as <strong>843 vagas comissionadas</strong> criadas pelo órgão.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Grupo de Cargos em Comissão</th>
+                        <th>Vagas Previstas na Lei</th>
+                        <th>Requisito Exigido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Grupo VI: Assessoramento Parlamentar</strong><br><small>(Assessores de Gabinete I ao XX)</small></td>
+                        <td>480</td>
+                        <td>Nível médio ou capacidade pública notória</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grupo V: Assessoramento Intermediário</strong><br><small>(Assessores Intermediários I, II e III)</small></td>
+                        <td>246</td>
+                        <td>Nível médio ou capacidade pública notória</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Demais Grupos (I, II, III, IV e VII)</strong><br><small>(Diretores, Secretários, Segurança Externa, etc.)</small></td>
+                        <td>117</td>
+                        <td>Variado</td>
+                    </tr>
+                    <tr style="font-weight: bold; background-color: #ffdcb5;">
+                        <td>TOTAL DE VAGAS COMISSIONADAS (Livre Nomeação)</td>
+                        <td>843</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="efetivos" class="page">
+            <h2>O Nosso Direito: As Vagas Efetivas</h2>
+            <p>Em contrapartida à avalanche de comissionados, o Grupo VIII da Carreira Legislativa (os cargos que exigem aprovação em concurso público) possui um total de <strong>483 vagas</strong> estruturadas. Nossa luta é pelo preenchimento integral dessas vagas ociosas.</p>
+            
+            <h3>Técnicos Legislativos (Nível Médio)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Especialidade</th>
+                        <th>Vagas na Lei</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Área Administrativa</td><td>100</td></tr>
+                    <tr><td>Polícia Legislativa</td><td>40</td></tr>
+                    <tr><td>Tradução de Libras</td><td>15</td></tr>
+                    <tr><td>Informática</td><td>10</td></tr>
+                    <tr><td>Outras Especialidades Técnicas</td><td>23</td></tr>
+                    <tr style="font-weight: bold; background-color: #e0f2f1;">
+                        <td>TOTAL DE NÍVEL MÉDIO</td>
+                        <td>188</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Analistas Legislativos (Nível Superior)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Especialidade (Principais)</th>
+                        <th>Vagas na Lei</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Área Administrativa</td><td>81</td></tr>
+                    <tr><td>Área Jurídica</td><td>39</td></tr>
+                    <tr><td>Administrador</td><td>20</td></tr>
+                    <tr><td>Revisor/Redator</td><td>20</td></tr>
+                    <tr><td>Jornalista</td><td>15</td></tr>
+                    <tr><td>Tecnologia e Informação</td><td>13</td></tr>
+                    <tr><td>Outras Especialidades Superiores</td><td>107</td></tr>
+                    <tr style="font-weight: bold; background-color: #e0f2f1;">
+                        <td>TOTAL DE NÍVEL SUPERIOR</td>
+                        <td>295</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Desenvolvido pela Comissão de Aprovados - ALMS | Lutando pela legalidade e eficiência no serviço público.</p>
+    </footer>
+
+    <script>
+        // Função para navegar entre as páginas
+        function showPage(pageId) {
+            // Oculta todas as páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Remove a classe 'active' de todos os botões
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Mostra a página solicitada e marca o botão como ativo
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('btn-' + pageId).classList.add('active');
+        }
+
+        // Configuração do Gráfico de Barras (Dashboard) usando Chart.js
+        const ctx = document.getElementById('meuGrafico').getContext('2d');
+        const meuGrafico = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Cargos Comissionados (Livre Nomeação)', 'Cargos Efetivos (Concurso)'],
+                datasets: [{
+                    label: 'Quantidade de Vagas Previstas em Lei',
+                    data: [843, 483],
+                    backgroundColor: [
+                        'rgba(255, 152, 0, 0.8)', // Laranja para Comissionados
+                        'rgba(0, 86, 179, 0.8)'   // Azul para Efetivos
+                    ],
+                    borderColor: [
+                        'rgba(255, 152, 0, 1)',
+                        'rgba(0, 86, 179, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Disparidade Legal: Vagas criadas pela Lei 6.279',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
