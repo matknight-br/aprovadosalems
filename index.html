@@ -3,278 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparência ALMS | Estrutura de Pessoal e Carreiras</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-light: #f8f9fa;
-            --border-color: #dee2e6;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--bg-light);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        nav {
-            background: #fff;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav button {
-            background: none;
-            border: none;
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--primary-color);
-            transition: 0.3s;
-        }
-
-        nav button:hover, nav button.active {
-            color: var(--accent-color);
-            border-bottom: 3px solid var(--accent-color);
-        }
-
-        main {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .page {
-            display: none;
-            background: white;
-            padding: 2.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        .page.active { display: block; }
-
-        h2 { color: var(--primary-color); margin-top: 0; }
-
-        .info-card {
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-color);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            background: #fdfdfd;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid var(--border-color);
-        }
-
-        th { background-color: #f1f3f5; color: var(--primary-color); }
-
-        .chart-wrapper {
-            width: 100%;
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-
-        .badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            background: #eee;
-        }
-
-        footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Comissão de Aprovados - ALMS</h1>
-    <p>Monitoramento e Transparência da Estrutura de Pessoal da Assembleia Legislativa de MS</p>
-</header>
-
-<nav>
-    <button onclick="showPage('inicio')" class="active" id="btn-inicio">Início</button>
-    <button onclick="showPage('proporcao')" id="btn-proporcao">Distribuição de Vagas</button>
-    <button onclick="showPage('detalhe-lei')" id="btn-detalhe-lei">Estrutura (Lei 6.279)</button>
-    <button onclick="showPage('ocupacao')" id="btn-ocupacao">Acompanhamento de Exercício</button>
-</nav>
-
-<main>
-    <section id="inicio" class="page active">
-        <h2>Acompanhamento Institucional</h2>
-        <p>Esta plataforma tem como objetivo disponibilizar dados consolidados sobre a estrutura funcional da Assembleia Legislativa de Mato Grosso do Sul, com base no <strong>Plano de Cargos, Carreira e Remuneração (Lei nº 6.279)</strong>.</p>
-        
-        <div class="info-card">
-            <strong>Missão:</strong> Promover a transparência pública e zelar pelo cumprimento do princípio do concurso público, assegurando que as vagas estruturadas sejam providas conforme as normas vigentes.
-        </div>
-        
-        <p>Através da análise técnica dos quantitativos de cargos e das taxas de vacância, buscamos colaborar com a administração pública na otimização do quadro de servidores da Casa de Leis.</p>
-    </section>
-
-    <section id="proporcao" class="page">
-        <h2>Quantitativo Legal de Vagas</h2>
-        <p>Abaixo apresentamos a distribuição das vagas estruturadas na Lei 6.279 por regime de provimento. Estes dados representam a capacidade total da estrutura operacional administrativa.</p>
-        
-        <div class="chart-wrapper">
-            <canvas id="chartProporcao"></canvas>
-        </div>
-        
-        <p><small>*Dados extraídos dos Quadros I a VIII do Anexo I da Lei 6.279.</small></p>
-    </section>
-
-    <section id="detalhe-lei" class="page">
-        <h2>Detalhamento das Carreiras Legislativas</h2>
-        
-        <h3>Cargos de Provimento Efetivo (Grupo VIII)</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Carreira / Nível</th>
-                    <th>Vagas Estruturadas</th>
-                    <th>Forma de Provimento</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Analista Legislativo (Superior)</td>
-                    <td>295</td>
-                    <td>Concurso Público</td>
-                </tr>
-                <tr>
-                    <td>Técnico Legislativo (Médio)</td>
-                    <td>188</td>
-                    <td>Concurso Público</td>
-                </tr>
-                <tr style="font-weight:bold;">
-                    <td>Total Efetivo</td>
-                    <td>483</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>Cargos de Provimento em Comissão (Grupos I a VII)</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Grupo Funcional</th>
-                    <th>Vagas Estruturadas</th>
-                    <th>Vínculo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Assessoramento Parlamentar (Grupo VI)</td>
-                    <td>480</td>
-                    <td>Livre Nomeação</td>
-                </tr>
-                <tr>
-                    <td>Assessoramento Intermediário (Grupo V)</td>
-                    <td>246</td>
-                    <td>Livre Nomeação</td>
-                </tr>
-                <tr>
-                    <td>Direção, Coordenação e Outros</td>
-                    <td>117</td>
-                    <td>Livre Nomeação</td>
-                </tr>
-                <tr style="font-weight:bold;">
-                    <td>Total Comissionado</td>
-                    <td>843</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="ocupacao" class="page">
-        <h2>Situação Atual de Exercício</h2>
-        <p>Esta seção destina-se ao cruzamento entre as vagas estruturadas por lei e o número de servidores efetivamente em exercício. Os dados de ocupação real estão em fase de levantamento via Diário Oficial e Portal da Transparência.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Cargo</th>
-                    <th>Vagas (Lei)</th>
-                    <th>Providos (Real)</th>
-                    <th>Vacância (Ociosas)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Analista Legislativo (Geral)</td>
-                    <td>295</td>
-                    <td><span class="badge">Informações solicitadas, aguardando resposta</span></td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Técnico Legislativo (Geral)</td>
-                    <td>188</td>
-                    <td><span class="badge">Informações solicitadas, aguardando resposta</span></td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>A correta identificação das vagas ociosas é fundamental para o planejamento das convocações dos aprovados em certames vigentes.</p>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; 2026 Comissão de Aprovados - ALMS | Transparência e Eficiência Legislativa</p>
-</footer>
-
-<script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        document.getElementById('btn-' + pageId).classList.add('active');
-    }
-
-    const ctx = document.getElementById('chartProporcao').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Vagas Comissionadas (843)', 'Vagas Efetivas (483)'],
-            datasets: [{
-                data: [843, 483],
-                backgroundColor: ['#bdc3c7', '#3498db'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { position: 'bottom' },
-                title: { display: true, text: 'Estrutura de Cargos Prevista (Lei 6.279)' }
+    <title>Painel de Transparência | Comissão ALMS</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' }
+                    }
+                }
             }
         }
-    });
-</script>
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Transições suaves para a troca de páginas */
+        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .tab-content.active { display: block; opacity: 1; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <nav class="bg-institucional-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-2xl text-blue-300"></i>
+                    <span class="font-bold text-lg tracking-wide">Comissão ALMS</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <button onclick="changeTab('inicio')" id="btn-inicio" class="nav-btn bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-600"><i class="fa-solid fa-house mr-2"></i>Início</button>
+                        <button onclick="changeTab('proporcao')" id="btn-proporcao" class="nav-btn text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</button>
+                        <button onclick="changeTab('detalhe-lei')" id="btn-detalhe-lei" class="nav-btn text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</button>
+                        <button onclick="changeTab('ocupacao')" id="btn-ocupacao" class="nav-btn text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <section id="inicio" class="tab-content active">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+                <h2 class="text-3xl font-bold text-institucional-900 mb-4">Painel de Monitoramento Funcional</h2>
+                <p class="text-lg text-slate-600 mb-6">Plataforma dedicada à transparência da estrutura de pessoal da Assembleia Legislativa de MS, promovendo o acompanhamento do provimento de cargos efetivos e em comissão.</p>
+                
+                <div class="bg-blue-50 border-l-4 border-institucional-600 p-4 rounded-r-lg">
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-circle-info text-institucional-600 mt-1 mr-3"></i>
+                        <p class="text-sm text-slate-700"><strong>Fundamentação Legal:</strong> Todos os dados estruturais apresentados têm como base os anexos do Plano de Cargos, Carreira e Remuneração <strong>(Lei nº 6.279)</strong>. Os dados de ocupação atual encontram-se em fase de levantamento oficial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                    <div class="rounded-full bg-blue-100 p-4 mr-4"><i class="fa-solid fa-user-tie text-2xl text-blue-600"></i></div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-500 uppercase">Cargos em Comissão</p>
+                        <p class="text-3xl font-bold text-slate-800">843</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                    <div class="rounded-full bg-emerald-100 p-4 mr-4"><i class="fa-solid fa-user-check text-2xl text-emerald-600"></i></div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-500 uppercase">Cargos Efetivos (Lei)</p>
+                        <p class="text-3xl font-bold text-slate-800">483</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                    <div class="rounded-full bg-amber-100 p-4 mr-4"><i class="fa-solid fa-scale-unbalanced text-2xl text-amber-600"></i></div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-500 uppercase">Proporção</p>
+                        <p class="text-3xl font-bold text-slate-800">1,7 : 1</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proporcao" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+                <h2 class="text-2xl font-bold text-institucional-900 mb-6 border-b pb-4">Indicadores de Estrutura</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-slate-600 mb-4">A visualização ao lado ilustra a distribuição das vagas estruturadas na Lei 6.279. Observa-se que a capacidade operacional administrativa conta com uma maioria substancial de vagas destinadas a livre nomeação.</p>
+                        <ul class="space-y-3 mt-6">
+                            <li class="flex items-center text-slate-700"><span class="w-4 h-4 bg-slate-400 rounded-full mr-3"></span> <strong>63.6%</strong> - Provimento em Comissão</li>
+                            <li class="flex items-center text-slate-700"><span class="w-4 h-4 bg-institucional-600 rounded-full mr-3"></span> <strong>36.4%</strong> - Provimento Efetivo (Concurso)</li>
+                        </ul>
+                    </div>
+                    <div class="relative h-80 w-full flex justify-center">
+                        <canvas id="chartProporcao"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="detalhe-lei" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+                <h2 class="text-2xl font-bold text-institucional-900 mb-6">Estrutura Funcional - Lei 6.279</h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-institucional-800 mb-4 flex items-center"><i class="fa-solid fa-list-check mr-2"></i>Grupo VIII: Provimento Efetivo</h3>
+                    <div class="overflow-x-auto rounded-lg border border-slate-200">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Carreira / Nível</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Vagas Estruturadas</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Forma de Provimento</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">Analista Legislativo (Superior)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">295</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Concurso Público</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">Técnico Legislativo (Médio)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">188</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Concurso Público</td>
+                                </tr>
+                                <tr class="bg-institucional-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-institucional-900">Total Efetivo</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-institucional-900 text-center">483</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center"><i class="fa-solid fa-users mr-2"></i>Grupos I a VII: Provimento em Comissão</h3>
+                    <div class="overflow-x-auto rounded-lg border border-slate-200">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Grupo Funcional</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Vagas Estruturadas</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Vínculo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">Assessoramento Parlamentar (G. VI)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">480</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Livre Nomeação</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">Assessoramento Intermediário (G. V)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">246</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Livre Nomeação</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">Direção, Coordenação e Outros</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">117</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Livre Nomeação</td>
+                                </tr>
+                                <tr class="bg-slate-100">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-800">Total Comissionado</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-800 text-center">843</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ocupacao" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h2 class="text-2xl font-bold text-institucional-900">Mapeamento de Vacâncias</h2>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800">
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Levantamento em curso
+                    </span>
+                </div>
+                
+                <p class="text-slate-600 mb-6">Quadro demonstrativo para cruzamento entre as vagas estruturadas por lei e os servidores em efetivo exercício. O quantitativo de "Ociosas" aponta a viabilidade legal para novas nomeações.</p>
+                
+                <div class="overflow-x-auto rounded-lg border border-slate-200">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-institucional-900 text-white">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Cargo Efetivo</th>
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Vagas (Lei)</th>
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Providos (Exercício)</th>
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Ociosas (Vacância)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Analista Legislativo</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 text-center">295</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-slate-100 text-slate-500">Aduzindo Dados</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-bold text-slate-400">-</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Técnico Legislativo</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 text-center">188</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-slate-100 text-slate-500">Aduzindo Dados</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-bold text-slate-400">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
+        <p class="text-sm">Desenvolvido pela Comissão de Aprovados - ALMS</p>
+        <p class="text-xs mt-2">Em defesa do provimento efetivo e da legalidade no serviço público.</p>
+    </footer>
+
+    <script>
+        // Função para navegação de abas com estilo Tailwind
+        function changeTab(tabId) {
+            // Oculta todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            
+            // Reseta estilo dos botões
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-institucional-800', 'text-white');
+                btn.classList.add('text-gray-300');
+            });
+            
+            // Ativa a aba atual
+            document.getElementById(tabId).classList.add('active');
+            
+            // Destaca o botão atual
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-gray-300');
+            activeBtn.classList.add('bg-institucional-800', 'text-white');
+        }
+
+        // Renderiza o gráfico quando a janela carregar
+        window.addEventListener('load', () => {
+            const ctx = document.getElementById('chartProporcao').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut', // Gráfico em rosca fica mais elegante em dashboards
+                data: {
+                    labels: ['Cargos em Comissão (843)', 'Cargos Efetivos (483)'],
+                    datasets: [{
+                        data: [843, 483],
+                        backgroundColor: [
+                            '#94a3b8', // Slate 400 (Cinza neutro)
+                            '#0284c7'  // Sky 600 (Azul institucional)
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%', // Espessura da rosca
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: { family: "'Inter', sans-serif", size: 14 }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
