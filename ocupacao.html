@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicações | Comissão CAALEMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <nav class="bg-institucional-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
+                    <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALMS</span>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                </div>
+                <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
+                    <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
+                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
+                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
+                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
+                        <a href="publicacoes.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="flex justify-between items-center mb-8 border-b pb-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-institucional-900">Documentos e Publicações</h2>
+            </div>
+            
+            <p class="text-slate-600 mb-8">Nesta seção, a Comissão disponibiliza atas de reuniões, ofícios protocolados, notas técnicas e demais documentos oficiais de interesse coletivo.</p>
+
+            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-folder-open text-institucional-600 mr-2"></i>Atas de Reunião</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Ata da Reunião de Formação</h4>
+                        <p class="text-xs text-slate-500 mb-2">Pendente de publicação</p>
+                        <span class="text-xs font-semibold text-slate-400 cursor-not-allowed">Arquivo em breve</span>
+                    </div>
+                </div>
+                </div>
+
+            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-envelope-open-text text-institucional-600 mr-2"></i>Ofícios e Requerimentos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                    <i class="fa-solid fa-file-contract text-slate-600 text-4xl"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Pedido de LAI - Ocupação</h4>
+                        <p class="text-xs text-slate-500 mb-2">Pendente de publicação</p>
+                        <span class="text-xs font-semibold text-slate-400 cursor-not-allowed">Arquivo em breve</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="rodape.js"></script>
+</body>
+</html>
