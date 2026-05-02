@@ -3,33 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Transparência | Comissão ALEMS</title>
-    
+    <title>Início | Comissão CAALEMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' }
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } }
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
-        .tab-content.active { display: block; opacity: 1; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
@@ -37,22 +17,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <img src="caalems.png" alt="Logo Comissão Aprovados ALMS" class="h-10 w-auto">
-                    <span class="font-bold text-lg tracking-wide">Comissão ALEMS</span>
+                    <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
+                    <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALMS</span>
                 </div>
-                
                 <div class="md:hidden">
-                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-white p-2 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
+                    <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
                 </div>
-
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
-                    <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-4 border-t border-institucional-800 md:border-t-0">
-                        <button onclick="changeTab('inicio')" id="btn-inicio" class="nav-btn w-full text-left md:w-auto bg-institucional-800 text-white px-4 py-3 md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-3 md:mr-2"></i>Início</button>
-                        <button onclick="changeTab('proporcao')" id="btn-proporcao" class="nav-btn w-full text-left md:w-auto text-gray-300 hover:bg-institucional-600 hover:text-white px-4 py-3 md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-3 md:mr-2"></i>Indicadores</button>
-                        <button onclick="changeTab('detalhe-lei')" id="btn-detalhe-lei" class="nav-btn w-full text-left md:w-auto text-gray-300 hover:bg-institucional-600 hover:text-white px-4 py-3 md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-3 md:mr-2"></i>Lei 6.279</button>
-                        <button onclick="changeTab('ocupacao')" id="btn-ocupacao" class="nav-btn w-full text-left md:w-auto text-gray-300 hover:bg-institucional-600 hover:text-white px-4 py-3 md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-3 md:mr-2"></i>Ocupação</button>
+                    <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
+                        <a href="index.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
+                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
+                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
+                        <a href="publicacoes.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
                     </div>
                 </div>
             </div>
@@ -60,364 +37,47 @@
     </nav>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        
-        <section id="inicio" class="tab-content active">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 mb-4">Painel de Monitoramento Funcional</h2>
-                <p class="text-base md:text-lg text-slate-600 mb-6">Plataforma dedicada à transparência da estrutura de pessoal da Assembleia Legislativa de MS, promovendo o acompanhamento do provimento de cargos efetivos e em comissão.</p>
-                
-                <div class="bg-blue-50 border-l-4 border-institucional-600 p-4 rounded-r-lg">
-                    <div class="flex items-start">
-                        <i class="fa-solid fa-circle-info text-institucional-600 mt-1 mr-3"></i>
-                        <p class="text-sm text-slate-700"><strong>Fundamentação Legal:</strong> Todos os dados estruturais apresentados têm como base os anexos do Plano de Cargos, Carreira e Remuneração <strong>(Lei nº 6.279)</strong>.</p>
-                    </div>
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
+            <div class="flex flex-col sm:flex-row items-center gap-6 mb-6">
+                <img src="logo.png" alt="Brasão CAALEMS" class="h-32 w-auto hidden sm:block opacity-90">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 mb-4">Painel de Monitoramento Funcional</h2>
+                    <p class="text-base md:text-lg text-slate-600">Plataforma dedicada à transparência da estrutura de pessoal da Assembleia Legislativa de MS, promovendo o acompanhamento do provimento de cargos efetivos e em comissão.</p>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
-                    <div class="rounded-full bg-blue-100 p-4 mr-4"><i class="fa-solid fa-user-tie text-2xl text-blue-600"></i></div>
-                    <div>
-                        <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Cargos em Comissão</p>
-                        <p class="text-2xl md:text-3xl font-bold text-slate-800">843</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
-                    <div class="rounded-full bg-emerald-100 p-4 mr-4"><i class="fa-solid fa-user-check text-2xl text-emerald-600"></i></div>
-                    <div>
-                        <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Efetivos (Lei)</p>
-                        <p class="text-2xl md:text-3xl font-bold text-slate-800">483</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
-                    <div class="rounded-full bg-amber-100 p-4 mr-4"><i class="fa-solid fa-building-user text-2xl text-amber-600"></i></div>
-                    <div>
-                        <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Efetivos (Providos)</p>
-                        <p class="text-2xl md:text-3xl font-bold text-slate-800">85<span class="text-sm text-slate-400 font-normal">*</span></p>
-                    </div>
+            <div class="bg-blue-50 border-l-4 border-institucional-600 p-4 rounded-r-lg">
+                <div class="flex items-start">
+                    <i class="fa-solid fa-circle-info text-institucional-600 mt-1 mr-3"></i>
+                    <p class="text-sm text-slate-700"><strong>Fundamentação Legal:</strong> Todos os dados estruturais apresentados têm como base os anexos do Plano de Cargos, Carreira e Remuneração <strong>(Lei nº 6.279)</strong>.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="proporcao" class="tab-content">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
-                <h2 class="text-xl md:text-2xl font-bold text-institucional-900 mb-6 border-b pb-4">Indicadores de Estrutura</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="text-slate-600 mb-4 text-sm md:text-base">A visualização ao lado ilustra a distribuição das vagas estruturadas na Lei 6.279. Observa-se que a capacidade operacional administrativa conta com uma maioria substancial de vagas destinadas a livre nomeação.</p>
-                        <ul class="space-y-3 mt-6 text-sm md:text-base">
-                            <li class="flex items-center text-slate-700"><span class="w-4 h-4 bg-slate-400 rounded-full mr-3 flex-shrink-0"></span> <strong>63.6%</strong> - Provimento em Comissão (843 vagas)</li>
-                            <li class="flex items-center text-slate-700"><span class="w-4 h-4 bg-institucional-600 rounded-full mr-3 flex-shrink-0"></span> <strong>36.4%</strong> - Provimento Efetivo / Concurso (483 vagas)</li>
-                        </ul>
-                    </div>
-                    <div class="relative h-64 md:h-80 w-full flex justify-center">
-                        <canvas id="chartProporcao"></canvas>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                <div class="rounded-full bg-blue-100 p-4 mr-4"><i class="fa-solid fa-user-tie text-2xl text-blue-600"></i></div>
+                <div>
+                    <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Cargos em Comissão</p>
+                    <p class="text-2xl md:text-3xl font-bold text-slate-800">843</p>
                 </div>
             </div>
-        </section>
-
-        <section id="detalhe-lei" class="tab-content">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
-                <h2 class="text-xl md:text-2xl font-bold text-institucional-900 mb-6">Estrutura Funcional - Lei 6.279</h2>
-                
-                <div class="mb-8">
-                    <h3 class="text-base md:text-lg font-semibold text-institucional-800 mb-4 flex items-center"><i class="fa-solid fa-list-check mr-2"></i>Grupo VIII: Provimento Efetivo</h3>
-                    <div class="overflow-x-auto rounded-lg border border-slate-200">
-                        <table class="min-w-full divide-y divide-slate-200">
-                            <thead class="bg-slate-50">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Carreira / Nível</th>
-                                    <th scope="col" class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Vagas</th>
-                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Provimento</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-slate-200">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-700">Analista Legislativo (Superior)</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">295</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500">Concurso Público</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-700">Técnico Legislativo (Médio)</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-medium">188</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500">Concurso Público</td>
-                                </tr>
-                                <tr class="bg-institucional-50">
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-institucional-900">Total Efetivo</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-institucional-900 text-center">483</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-12">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
-                            <i class="fa-solid fa-users-gear mr-2 text-institucional-600"></i>
-                            Grupos I a VII: Provimento em Comissão (Livre Nomeação)
-                        </h3>
-                        <div class="overflow-x-auto rounded-lg border border-slate-200">
-                            <table class="min-w-full divide-y divide-slate-200">
-                                <thead class="bg-slate-50">
-                                    <tr>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Grupo / Descrição</th>
-                                        <th scope="col" class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Vagas</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Requisito Base</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-slate-200 text-sm">
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-4 py-3 text-slate-700"><strong>Grup. I, II e III:</strong> Direção e Assessoramento Especializado <br><span class="text-xs text-slate-500">(Secretários, Diretores, Gerentes e Coordenadores)</span></td>
-                                        <td class="px-4 py-3 text-center font-medium">64</td>
-                                        <td class="px-4 py-3 text-slate-500 italic">Superior / Notório saber</td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-4 py-3 text-slate-700"><strong>Grup. IV:</strong> Assessoramento Superior <br><span class="text-xs text-slate-500">(Assessores Jurídicos, Militares e de Imprensa)</span></td>
-                                        <td class="px-4 py-3 text-center font-medium">23</td>
-                                        <td class="px-4 py-3 text-slate-500 italic">Superior / Notório saber</td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-4 py-3 text-slate-700"><strong>Grup. V:</strong> Assessoramento Intermediário <br><span class="text-xs text-slate-500">(Assessores Intermediários I, II e III)</span></td>
-                                        <td class="px-4 py-3 text-center font-medium text-institucional-600 font-bold">246</td>
-                                        <td class="px-4 py-3 text-slate-500 italic">Médio / Notório saber</td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50 bg-blue-50/30">
-                                        <td class="px-4 py-3 text-slate-700"><strong>Grup. VI:</strong> Assessoramento Parlamentar <br><span class="text-xs text-slate-500">(Assessores de Gabinete I ao XX - Apoio aos Deputados)</span></td>
-                                        <td class="px-4 py-3 text-center font-medium text-institucional-600 font-bold underline">480</td>
-                                        <td class="px-4 py-3 text-slate-500 italic">Médio / Notório saber</td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-4 py-3 text-slate-700"><strong>Grup. VII:</strong> Segurança Externa <br><span class="text-xs text-slate-500">(Policial Legislativo - Provimento em Comissão)</span></td>
-                                        <td class="px-4 py-3 text-center font-medium">30</td>
-                                        <td class="px-4 py-3 text-slate-500 italic">Médio / Notório saber</td>
-                                    </tr>
-                                    <tr class="bg-slate-800 text-white">
-                                        <td class="px-4 py-4 font-bold uppercase tracking-wider">Total de Vagas Comissionadas</td>
-                                        <td class="px-4 py-4 text-center font-bold text-lg">843</td>
-                                        <td class="px-4 py-4 text-xs italic text-slate-300">Estrutura de Livre Nomeação</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="mt-4 text-xs text-slate-500 leading-relaxed italic">
-                            Nota: Conforme o Anexo I da Lei 6.279, a estrutura comissionada é composta majoritariamente por Assessores Parlamentares (480 vagas) e Assessores Intermediários (246 vagas), totalizando 726 postos de trabalho apenas nesses dois grupos.
-                        </p>
-                    </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                <div class="rounded-full bg-emerald-100 p-4 mr-4"><i class="fa-solid fa-user-check text-2xl text-emerald-600"></i></div>
+                <div>
+                    <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Efetivos (Lei)</p>
+                    <p class="text-2xl md:text-3xl font-bold text-slate-800">483</p>
                 </div>
             </div>
-        </section>
-
-        <section id="ocupacao" class="tab-content">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
-                <div class="flex justify-between items-center mb-6 border-b pb-4">
-                    <h2 class="text-xl md:text-2xl font-bold text-institucional-900">Mapeamento de Vacâncias</h2>
-                </div>
-                
-                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-8">
-                    <div class="flex items-start">
-                        <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-1 mr-3"></i>
-                        <p class="text-xs md:text-sm text-amber-800"><strong>Aviso Metodológico:</strong> Os dados de provimento apresentados nesta página consistem em um <strong>levantamento inicial não oficial</strong>, consolidado por amostragem de dados. Os números exatos estão sujeitos à validação final pelos órgãos oficiais ou via Lei de Acesso à Informação.</p>
-                    </div>
-                </div>
-
-                <h3 class="text-base md:text-lg font-semibold text-institucional-800 mb-4 flex items-center"><i class="fa-solid fa-chart-simple mr-2"></i>Resumo Estimado de Ocupação</h3>
-                <div class="overflow-x-auto rounded-lg border border-slate-200 mb-10">
-                    <table class="min-w-full divide-y divide-slate-200">
-                        <thead class="bg-institucional-900 text-white">
-                            <tr>
-                                <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Cargo</th>
-                                <th scope="col" class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider">Lei</th>
-                                <th scope="col" class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider">Providos</th>
-                                <th scope="col" class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider">Vacância</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-slate-200">
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Analista Legislativo (Sup.)</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500 text-center font-bold">295</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-medium text-emerald-600">54</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-bold text-red-600">241</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Técnico Legislativo (Méd.)</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500 text-center font-bold">188</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-medium text-emerald-600">31</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-bold text-red-600">157</td>
-                            </tr>
-                            <tr class="bg-slate-100">
-                                <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-slate-900">Total</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 text-center font-bold">483</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-bold text-emerald-700">85</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-bold text-red-700">398 Ociosas</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="text-base md:text-lg font-semibold text-institucional-800 mb-4 flex items-center"><i class="fa-solid fa-bars-staggered mr-2"></i>Detalhamento de Servidores Mapeados</h3>
-                
-                <div class="overflow-x-auto rounded-lg border border-slate-200">
-                    <table class="min-w-full divide-y divide-slate-200">
-                        <thead class="bg-slate-50">
-                            <tr>
-                                <th scope="col" class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Cód.</th>
-                                <th scope="col" class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Especialidade</th>
-                                <th scope="col" class="px-4 py-3 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider">Ocup.</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-slate-200">
-                            <tr class="bg-slate-50"><td colspan="3" class="px-4 py-2 text-xs font-bold text-slate-500 uppercase">Técnicos Legislativos (Nível Médio)</td></tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">TCLS.08.01</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Área Administrativa</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">20</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">TCLS.08.05</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Informática</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">3</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">TCLS.08.08</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Polícia Legislativa</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">5</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">TCLS.08.11</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Tradução de Libras</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">3</td>
-                            </tr>
-                            
-                            <tr class="bg-slate-50"><td colspan="3" class="px-4 py-2 text-xs font-bold text-slate-500 uppercase border-t">Analistas Legislativos (Nível Superior)</td></tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.01</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Administrador</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">4</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.02</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Área Administrativa</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">15</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.03</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Arquiteto</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">1</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.05</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Assistente Jurídico</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">3</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.08</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Cerimonialista</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">6</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.09</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Cons. Processo Legislativo</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">5</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.10</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Contador</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">2</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.13</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Economista</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">1</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.18</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Jornalista</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">5</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.19</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Jurídico</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">2</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.20</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Médico</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">3</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.25</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Publicitário</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">1</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-4 py-3 whitespace-nowrap text-xs font-mono text-slate-500">ANLS.08.27</td>
-                                <td class="px-4 py-3 text-xs md:text-sm text-slate-700">Revisor / Redator</td>
-                                <td class="px-4 py-3 whitespace-nowrap text-center text-xs md:text-sm font-medium text-slate-900">6</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center">
+                <div class="rounded-full bg-amber-100 p-4 mr-4"><i class="fa-solid fa-building-user text-2xl text-amber-600"></i></div>
+                <div>
+                    <p class="text-xs md:text-sm font-medium text-slate-500 uppercase">Efetivos (Providos)</p>
+                    <p class="text-2xl md:text-3xl font-bold text-slate-800">85<span class="text-sm text-slate-400 font-normal">*</span></p>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
-        <p class="text-sm">Em Desenvolvimento pela Comissão de Aprovados - ALEMS</p>
-        <p class="text-xs mt-2">Em defesa do provimento efetivo no serviço público.</p>
-    </footer>
-
-    <script>
-        // Função para abrir/fechar o menu mobile
-        function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Função para navegação de abas
-        function changeTab(tabId) {
-            // Oculta conteúdos
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            // Reseta botões
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('bg-institucional-800', 'text-white');
-                btn.classList.add('text-gray-300');
-            });
-            // Ativa aba selecionada
-            document.getElementById(tabId).classList.add('active');
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.remove('text-gray-300');
-            activeBtn.classList.add('bg-institucional-800', 'text-white');
-
-            // FECHA O MENU MOBILE APÓS O CLIQUE
-            document.getElementById('nav-menu').classList.add('hidden');
-        }
-
-        window.addEventListener('load', () => {
-            const ctx = document.getElementById('chartProporcao').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Cargos em Comissão (843)', 'Cargos Efetivos Previstos (483)'],
-                    datasets: [{
-                        data: [843, 483],
-                        backgroundColor: ['#94a3b8', '#0284c7'],
-                        borderWidth: 0,
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '65%',
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { padding: 15, font: { family: "'Inter', sans-serif", size: 12 } }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="rodape.js"></script>
 </body>
 </html>
