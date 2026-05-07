@@ -124,9 +124,14 @@
             width: 60%;
             height: auto;
         }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-slow { animation: bounce-slow 2s infinite; }
     </style>
-    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Comunidade no WhatsApp">
+    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 </body>
 </html>
