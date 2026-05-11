@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
         themeToggleBtn.addEventListener('click', function() {
             // Alterna a classe dark no HTML principal
             document.documentElement.classList.toggle('dark');
+            // Atualiza gráficos se houver (para a página de Indicadores)
+            if (typeof updateChartColors === "function") updateChartColors();
             
             // Troca o ícone e salva a preferência no LocalStorage
             if (document.documentElement.classList.contains('dark')) {
