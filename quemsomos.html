@@ -305,31 +305,6 @@
     </main>
 
     <script src="rodape.js"></script>
-
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleIcon = document.getElementById('theme-toggle-icon');
-
-        if (document.documentElement.classList.contains('dark')) {
-            themeToggleIcon.classList.remove('fa-moon');
-            themeToggleIcon.classList.add('fa-sun');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            document.documentElement.classList.toggle('dark');
-            
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-                themeToggleIcon.classList.remove('fa-moon');
-                themeToggleIcon.classList.add('fa-sun');
-            } else {
-                localStorage.theme = 'light';
-                themeToggleIcon.classList.remove('fa-sun');
-                themeToggleIcon.classList.add('fa-moon');
-            }
-        });
-    </script>
-
     <style>
         .whatsapp-float {
             position: fixed;
