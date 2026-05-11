@@ -8,9 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } }
+        // Configuração Tailwind com Dark Mode ativado
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
+        }
     </script>
-    <!-- Google tag (gtag.js) -->
+    <script>
+        // Verifica o tema antes de renderizar para evitar clarão (FOUC)
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y8HBXXY76"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -20,7 +31,7 @@
       gtag('config', 'G-0Y8HBXXY76');
     </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
 
     <nav class="bg-institucional-900 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,15 +40,21 @@
                     <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
                     <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
                 </div>
-                <div class="md:hidden">
-                    <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                    </div>
                 </div>
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
                     <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
-                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-house mr-2"></i>Início</a>
-                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
-                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
-                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
+                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
+                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
+                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
+                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
                         <a href="publicacoes.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
                         <a href="contato.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
                     </div>
@@ -47,127 +64,130 @@
     </nav>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
-            <div class="flex justify-between items-center mb-8 border-b pb-4">
-                <h2 class="text-2xl md:text-3xl font-bold text-institucional-900">Documentos e Publicações</h2>
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300">
+            <div class="flex justify-between items-center mb-8 border-b border-slate-200 dark:border-slate-700 pb-4 transition-colors duration-300">
+                <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100">Documentos e Publicações</h2>
             </div>
             
-            <p class="text-slate-600 mb-8">Nesta seção, a Comissão disponibiliza atas de reuniões, ofícios protocolados, notas técnicas e demais documentos oficiais de interesse coletivo.</p>
+            <p class="text-slate-600 dark:text-slate-300 mb-8 transition-colors duration-300">Nesta seção, a Comissão disponibiliza atas de reuniões, ofícios protocolados, notas técnicas e demais documentos oficiais de interesse coletivo.</p>
 
-            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-folder-open text-institucional-600 mr-2"></i>Convocatórias e Atas de Reunião</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Convocatórias e Atas de Reunião</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Ata 01-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Ata01-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ata 01-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Ata01-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Ata 02-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Ata02-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ata 02-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Ata02-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Ata 03-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Ata03-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ata 03-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Ata03-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Ata 04-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Ata04-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ata 04-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Ata04-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Ata 05-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Ata05-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ata 05-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Ata05-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
             </div>
 
-            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-folder-open text-institucional-600 mr-2"></i>Portarias</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Portarias</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Portaria 01-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Portaria01-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Portaria 01-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Portaria01-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Portaria 02-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Portaria02-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Portaria 02-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Portaria02-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
-                </div><div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                </div>
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Portaria 03-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Portaria03-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Portaria 03-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Portaria03-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
-                </div><div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                </div>
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Portaria 04-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Portaria04-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Portaria 04-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Portaria04-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
             </div>
             
-            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-folder-open text-institucional-600 mr-2"></i>Ofícios</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Ofícios</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Oficio 01-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Oficio01-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ofício 01-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Oficio01-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Oficio 02-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Oficio02-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ofício 02-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Oficio02-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Oficio 03-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Oficio03-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ofício 03-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Oficio03-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Oficio 04-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Oficio04-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ofício 04-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Oficio04-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Oficio 05-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Oficio05-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Ofício 05-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Oficio05-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
             </div>
-            <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center"><i class="fa-solid fa-folder-open text-institucional-600 mr-2"></i>Documentos Diversos</h3>
+            
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Documentos Diversos</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-slate-50 flex items-start gap-4">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-start gap-4">
                     <i class="fa-solid fa-file-pdf text-red-500 text-4xl"></i>
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Recomendação 01-2026</h4>
-                        <p class="text-xs text-slate-500 mb-2"><a href="/publicacoes/Recomendacao01-26.pdf" target="_blank">Visualize aqui</a></p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Recomendação 01-2026</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2"><a href="/publicacoes/Recomendacao01-26.pdf" target="_blank" class="hover:text-institucional-600 dark:hover:text-institucional-400 transition-colors">Visualize aqui</a></p>
                     </div>
                 </div>
             </div>                
@@ -194,27 +214,4 @@
             transition: all 0.3s ease-in-out;
             display: flex;
             justify-content: center;
-            align-items: center;
-        }
-    
-        .whatsapp-float:hover {
-            background-color: #1ebea5;
-            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
-            transform: scale(1.05);
-        }
-    
-        .whatsapp-float img {
-            width: 60%;
-            height: auto;
-        }
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-        .animate-bounce-slow { animation: bounce-slow 2s infinite; }
-    </style>
-    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
-    </a>
-</body>
-</html>
+            align-items
