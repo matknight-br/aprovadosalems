@@ -40,8 +40,13 @@
                     <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
                     <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
                 </div>
-                <div class="md:hidden">
-                    <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                    </div>
                 </div>
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
                     <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
