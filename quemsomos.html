@@ -125,13 +125,20 @@
                 </ul>
             </div>
 
+            <div class="flex justify-center md:hidden mb-4 pointer-events-none" aria-hidden="true">
+                <div class="bg-blue-50 dark:bg-slate-700 px-4 py-2 rounded-full shadow-sm border border-blue-200 dark:border-slate-600 flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-hand-pointer text-institucional-600 dark:text-institucional-400 animate-pulse text-sm"></i>
+                    <span class="text-xs font-bold text-institucional-900 dark:text-institucional-100 uppercase tracking-wider">Toque nos rostos para detalhes</span>
+                </div>
+            </div>
+
             <div class="relative w-full max-w-5xl mx-auto" aria-hidden="true">
-                <img src="publicacoes/diretoria.png" alt="Equipe Diretiva da CAALEMS em formação" class="w-full h-auto rounded-xl shadow-md">
+                <img src="diretoria.png" alt="Equipe Diretiva da CAALEMS em formação" class="w-full h-auto rounded-xl shadow-md">
                 
-				<div class="absolute top-2 left-2 md:top-1/2 md:left-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-md border border-white/50 dark:border-slate-700/50 flex items-center gap-2 pointer-events-none transition-colors duration-300 z-20">
-					<i class="fa-solid fa-arrow-pointer text-institucional-600 dark:text-institucional-400 animate-pulse text-sm md:text-base"></i>
-					<span class="text-[10px] md:text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest">Passe o mouse (ou toque) sobre o rosto</span>
-				</div>
+                <div class="hidden md:flex absolute top-1/2 left-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-white/50 dark:border-slate-700/50 items-center gap-2 pointer-events-none transition-colors duration-300 z-20">
+                    <i class="fa-solid fa-arrow-pointer text-institucional-600 dark:text-institucional-400 animate-pulse text-base"></i>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest">Passe o mouse sobre os rostos</span>
+                </div>
 
                 <div class="absolute group cursor-help" style="top: 7%; left: 8%; width: 8%; height: 15%;">
                     <div class="w-full h-full absolute inset-0 border-4 border-transparent rounded-full transition-all duration-300 bg-institucional-900/0"></div>
