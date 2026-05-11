@@ -6,7 +6,7 @@
     <title>Contato | CAALEMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
         // Configuração Tailwind com Dark Mode ativado
         tailwind.config = { 
@@ -14,6 +14,7 @@
             theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Verifica o tema antes de renderizar para evitar clarão (FOUC)
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -36,26 +37,26 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
+                    <img src="logo.png" alt="Logo da Comissão de Aprovados da ALEMS" class="h-12 w-auto">
                     <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button id="theme-toggle" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
-                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
+                    <button id="theme-toggle" aria-label="Alternar tema claro e escuro" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl" aria-hidden="true"></i>
                     </button>
                     <div class="md:hidden">
-                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" aria-label="Abrir menu de navegação" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
                     <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
-                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2"></i>Início</a>
-                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
-                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
-                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
-                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
-                        <a href="publicacoes.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
-                        <a href="contato.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
+                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2" aria-hidden="true"></i>Início</a>
+                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2" aria-hidden="true"></i>Quem Somos</a>
+                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2" aria-hidden="true"></i>Indicadores</a>
+                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i>Lei 6.279</a>
+                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2" aria-hidden="true"></i>Ocupação</a>
+                        <a href="publicacoes.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-file-lines mr-2" aria-hidden="true"></i>Publicações</a>
+                        <a href="contato.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>Contato</a>
                     </div>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                 <div class="bg-emerald-600 rounded-2xl p-6 text-white shadow-lg mb-8 transform hover:scale-[1.02] transition-all duration-300 border-b-4 border-emerald-800">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="bg-white/20 p-3 rounded-full flex-shrink-0">
-                            <i class="fa-brands fa-whatsapp text-4xl"></i>
+                            <i class="fa-brands fa-whatsapp text-4xl" aria-hidden="true"></i>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">Comunidade no WhatsApp</h3>
@@ -81,13 +82,13 @@
                     </div>
                     <p class="text-emerald-50 mb-6 text-sm">Entre na nossa comunidade para receber atualizações em tempo real sobre convocações, andamento de ofícios e ações da Comissão.</p>
                     <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white text-emerald-700 font-black py-3 rounded-xl hover:bg-emerald-50 transition-colors shadow-sm uppercase tracking-wider text-sm">
-                        <i class="fa-solid fa-right-to-bracket mr-2"></i> Entrar na Comunidade
+                        <i class="fa-solid fa-right-to-bracket mr-2" aria-hidden="true"></i> Entrar na Comunidade
                     </a>
                 </div>
                 
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-institucional-800 dark:text-institucional-400"><i class="fa-solid fa-envelope text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-institucional-800 dark:text-institucional-400"><i class="fa-solid fa-envelope text-xl" aria-hidden="true"></i></div>
                         <div>
                             <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">E-mail Oficial</p>
                             <p class="text-lg font-semibold text-slate-700 dark:text-slate-200">aprovadosalems@gmail.com</p>
@@ -95,7 +96,7 @@
                     </div>
                     
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-pink-600 dark:text-pink-400"><i class="fa-brands fa-instagram text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-pink-600 dark:text-pink-400"><i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i></div>
                         <div>
                             <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">Instagram</p>
                             <a href="https://instagram.com/aprovadosalems" target="_blank" class="text-lg font-semibold text-slate-700 dark:text-slate-200 hover:text-institucional-600 dark:hover:text-institucional-400">@aprovadosalems</a>
@@ -103,7 +104,7 @@
                     </div>
 
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-blue-600 dark:text-blue-400"><i class="fa-solid fa-globe text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-blue-600 dark:text-blue-400"><i class="fa-solid fa-globe text-xl" aria-hidden="true"></i></div>
                         <div>
                             <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">Portal</p>
                             <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 hover:text-institucional-600 dark:hover:text-institucional-400">www.aprovadosalems.dpdns.org</p>
@@ -115,18 +116,18 @@
             <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 transition-colors duration-300">
                 <form action="https://formspree.io/f/mlgzbzzr" method="POST" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Nome Completo</label>
-                        <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Seu nome">
+                        <label for="nome" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Nome Completo</label>
+                        <input type="text" id="nome" name="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Seu nome">
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Seu Melhor E-mail</label>
-                        <input type="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="exemplo@email.com">
+                        <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Seu Melhor E-mail</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="exemplo@email.com">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Assunto</label>
-                        <select name="subject" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none">
+                        <label for="assunto" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Assunto</label>
+                        <select id="assunto" name="subject" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none">
                             <option>Dúvida sobre Nomeações</option>
                             <option>Denúncia / Relato</option>
                             <option>Sugestão para o Portal</option>
@@ -135,12 +136,12 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Mensagem</label>
-                        <textarea name="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Como podemos ajudar?"></textarea>
+                        <label for="mensagem" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Mensagem</label>
+                        <textarea id="mensagem" name="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Como podemos ajudar?"></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-institucional-900 dark:bg-institucional-600 text-white font-bold py-3 rounded-lg hover:bg-institucional-800 dark:hover:bg-institucional-500 transform active:scale-95 transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar Mensagem
                     </button>
                 </form>
             </div>
@@ -149,5 +150,16 @@
     </main>
 
     <script src="rodape.js"></script>
+
+    <style>
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); z-index: 9999; cursor: pointer; text-decoration: none; transition: all 0.3s ease-in-out; display: flex; justify-content: center; align-items: center; }
+        .whatsapp-float:hover { background-color: #1ebea5; box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4); transform: scale(1.05); }
+        @keyframes bounce-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        .animate-bounce-slow { animation: bounce-slow 2s infinite; }
+    </style>
+    
+    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" aria-label="Junte-se à nossa comunidade no WhatsApp" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
+        <i class="fa-brands fa-whatsapp text-3xl" aria-hidden="true"></i>
+    </a>
 </body>
 </html>
