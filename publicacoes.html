@@ -6,7 +6,7 @@
     <title>Publicações | Comissão CAALEMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
         // Configuração Tailwind com Dark Mode ativado
         tailwind.config = { 
@@ -14,6 +14,7 @@
             theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Verifica o tema antes de renderizar para evitar clarão (FOUC)
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -27,7 +28,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-0Y8HBXXY76');
     </script>
 </head>
@@ -37,26 +37,26 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
+                    <img src="logo.png" alt="Logo da Comissão de Aprovados da ALEMS" class="h-12 w-auto">
                     <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button id="theme-toggle" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
-                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
+                    <button id="theme-toggle" aria-label="Alternar tema claro e escuro" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl" aria-hidden="true"></i>
                     </button>
                     <div class="md:hidden">
-                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" aria-label="Abrir menu de navegação" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
                     <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
-                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2"></i>Início</a>
-                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
-                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
-                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
-                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
-                        <a href="publicacoes.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
-                        <a href="contato.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
+                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2" aria-hidden="true"></i>Início</a>
+                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2" aria-hidden="true"></i>Quem Somos</a>
+                        <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2" aria-hidden="true"></i>Indicadores</a>
+                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i>Lei 6.279</a>
+                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2" aria-hidden="true"></i>Ocupação</a>
+                        <a href="publicacoes.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-file-lines mr-2" aria-hidden="true"></i>Publicações</a>
+                        <a href="contato.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>Contato</a>
                     </div>
                 </div>
             </div>
@@ -71,82 +71,82 @@
             
             <p class="text-slate-600 dark:text-slate-300 mb-8 transition-colors duration-300">Nesta seção, a Comissão disponibiliza atas de reuniões, ofícios protocolados, notas técnicas e demais documentos oficiais de interesse coletivo.</p>
 
-            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Convocatórias e Atas de Reunião</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2" aria-hidden="true"></i>Convocatórias e Atas de Reunião</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <a href="/publicacoes/Ata01-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Ata01-26.pdf" target="_blank" aria-label="Abrir Ata 01-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ata 01-2026</h4>
                 </a>
-                <a href="/publicacoes/Ata02-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Ata02-26.pdf" target="_blank" aria-label="Abrir Ata 02-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ata 02-2026</h4>
                 </a>
-                <a href="/publicacoes/Ata03-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Ata03-26.pdf" target="_blank" aria-label="Abrir Ata 03-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ata 03-2026</h4>
                 </a>
-                <a href="/publicacoes/Ata04-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Ata04-26.pdf" target="_blank" aria-label="Abrir Ata 04-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ata 04-2026</h4>
                 </a>
-                <a href="/publicacoes/Ata05-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Ata05-26.pdf" target="_blank" aria-label="Abrir Ata 05-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ata 05-2026</h4>
                 </a>
             </div>
 
-            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Portarias</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2" aria-hidden="true"></i>Portarias</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <a href="/publicacoes/Portaria01-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Portaria01-26.pdf" target="_blank" aria-label="Abrir Portaria 01-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Portaria 01-2026</h4>
                 </a>
-                <a href="/publicacoes/Portaria02-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Portaria02-26.pdf" target="_blank" aria-label="Abrir Portaria 02-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Portaria 02-2026</h4>
                 </a>
-                <a href="/publicacoes/Portaria03-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Portaria03-26.pdf" target="_blank" aria-label="Abrir Portaria 03-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Portaria 03-2026</h4>
                 </a>
-                <a href="/publicacoes/Portaria04-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Portaria04-26.pdf" target="_blank" aria-label="Abrir Portaria 04-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Portaria 04-2026</h4>
                 </a>
-                <a href="/publicacoes/Portaria05-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Portaria05-26.pdf" target="_blank" aria-label="Abrir Portaria 05-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Portaria 05-2026</h4>
                 </a>
             </div>
             
-            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Ofícios</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2" aria-hidden="true"></i>Ofícios</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <a href="/publicacoes/Oficio01-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Oficio01-26.pdf" target="_blank" aria-label="Abrir Ofício 01-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ofício 01-2026</h4>
                 </a>
-                <a href="/publicacoes/Oficio02-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Oficio02-26.pdf" target="_blank" aria-label="Abrir Ofício 02-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ofício 02-2026</h4>
                 </a>
-                <a href="/publicacoes/Oficio03-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Oficio03-26.pdf" target="_blank" aria-label="Abrir Ofício 03-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ofício 03-2026</h4>
                 </a>
-                <a href="/publicacoes/Oficio04-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Oficio04-26.pdf" target="_blank" aria-label="Abrir Ofício 04-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ofício 04-2026</h4>
                 </a>
-                <a href="/publicacoes/Oficio05-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Oficio05-26.pdf" target="_blank" aria-label="Abrir Ofício 05-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Ofício 05-2026</h4>
                 </a>
             </div>
             
-            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2"></i>Documentos Diversos</h3>
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center transition-colors duration-300"><i class="fa-solid fa-folder-open text-institucional-600 dark:text-institucional-400 mr-2" aria-hidden="true"></i>Documentos Diversos</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                <a href="/publicacoes/Recomendacao01-26.pdf" target="_blank" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                <a href="/publicacoes/Recomendacao01-26.pdf" target="_blank" aria-label="Abrir Recomendação 01-2026 em PDF" class="border border-slate-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-md transition-all duration-300 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-4 group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-4xl group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
                     <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-institucional-600 dark:group-hover:text-institucional-400 transition-colors">Recomendação 01-2026</h4>
                 </a>
             </div>                
@@ -155,45 +155,13 @@
 
     <script src="rodape.js"></script>
     <style>
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .whatsapp-float:hover {
-            background-color: #1ebea5;
-            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
-            transform: scale(1.05);
-        }
-    
-        .whatsapp-float img {
-            width: 60%;
-            height: auto;
-        }
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); z-index: 9999; cursor: pointer; text-decoration: none; transition: all 0.3s ease-in-out; display: flex; justify-content: center; align-items: center; }
+        .whatsapp-float:hover { background-color: #1ebea5; box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4); transform: scale(1.05); }
+        @keyframes bounce-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
         .animate-bounce-slow { animation: bounce-slow 2s infinite; }
     </style>
-    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" aria-label="Junte-se à nossa comunidade no WhatsApp" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
+        <i class="fa-brands fa-whatsapp text-3xl" aria-hidden="true"></i>
     </a>
 </body>
 </html>
