@@ -8,9 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } }
+        // Configuração Tailwind com Dark Mode ativado
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
+        }
     </script>
-    <!-- Google tag (gtag.js) -->
+    <script>
+        // Verifica o tema antes de renderizar para evitar clarão (FOUC)
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y8HBXXY76"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -19,7 +30,7 @@
       gtag('config', 'G-0Y8HBXXY76');
     </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
 
     <nav class="bg-institucional-900 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,12 +39,18 @@
                     <img src="logo.png" alt="Logo CAALEMS" class="h-12 w-auto">
                     <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
                 </div>
-                <div class="md:hidden">
-                    <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                    </div>
                 </div>
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
                     <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
                         <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
                         <a href="indicadores.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
                         <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
                         <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
@@ -49,8 +66,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             <div>
-                <h2 class="text-3xl font-bold text-institucional-900 mb-6">Vamos conversar?!</h2>
-                <p class="text-slate-600 mb-8 leading-relaxed">Utilize este canal para enviar dúvidas e demais manifestações à Comissão de Aprovados. Seus dados serão tratados com os devidos preceitos de respeito, ética e sigilo, sob a observância da Lei Federal 13.709/18 (Lei Geral de Proteção de Dados Pessoais/LGPD).</p>
+                <h2 class="text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-6">Vamos conversar?!</h2>
+                <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">Utilize este canal para enviar dúvidas e demais manifestações à Comissão de Aprovados. Seus dados serão tratados com os devidos preceitos de respeito, ética e sigilo, sob a observância da Lei Federal 13.709/18 (Lei Geral de Proteção de Dados Pessoais/LGPD).</p>
 
                 <div class="bg-emerald-600 rounded-2xl p-6 text-white shadow-lg mb-8 transform hover:scale-[1.02] transition-all duration-300 border-b-4 border-emerald-800">
                     <div class="flex items-center gap-4 mb-4">
@@ -70,46 +87,46 @@
                 
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 p-3 rounded-lg text-institucional-800"><i class="fa-solid fa-envelope text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-institucional-800 dark:text-institucional-400"><i class="fa-solid fa-envelope text-xl"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-slate-400">E-mail Oficial</p>
-                            <p class="text-lg font-semibold text-slate-700">aprovadosalems@gmail.com</p>
+                            <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">E-mail Oficial</p>
+                            <p class="text-lg font-semibold text-slate-700 dark:text-slate-200">aprovadosalems@gmail.com</p>
                         </div>
                     </div>
                     
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 p-3 rounded-lg text-pink-600"><i class="fa-brands fa-instagram text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-pink-600 dark:text-pink-400"><i class="fa-brands fa-instagram text-xl"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-slate-400">Instagram</p>
-                            <a href="https://instagram.com/aprovadosalems" target="_blank" class="text-lg font-semibold text-slate-700 hover:text-institucional-600">@aprovadosalems</a>
+                            <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">Instagram</p>
+                            <a href="https://instagram.com/aprovadosalems" target="_blank" class="text-lg font-semibold text-slate-700 dark:text-slate-200 hover:text-institucional-600 dark:hover:text-institucional-400">@aprovadosalems</a>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-4">
-                        <div class="bg-institucional-100 p-3 rounded-lg text-blue-600"><i class="fa-solid fa-globe text-xl"></i></div>
+                        <div class="bg-institucional-100 dark:bg-institucional-900 p-3 rounded-lg text-blue-600 dark:text-blue-400"><i class="fa-solid fa-globe text-xl"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-slate-400">Portal</p>
-                            <p class="text-lg font-semibold text-slate-700 hover:text-institucional-600">www.aprovadosalems.dpdns.org</p>
+                            <p class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">Portal</p>
+                            <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 hover:text-institucional-600 dark:hover:text-institucional-400">www.aprovadosalems.dpdns.org</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 transition-colors duration-300">
                 <form action="https://formspree.io/f/mlgzbzzr" method="POST" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Nome Completo</label>
-                        <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-institucional-600 focus:border-transparent outline-none transition-all" placeholder="Seu nome">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Nome Completo</label>
+                        <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Seu nome">
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Seu Melhor E-mail</label>
-                        <input type="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-institucional-600 focus:border-transparent outline-none transition-all" placeholder="exemplo@email.com">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Seu Melhor E-mail</label>
+                        <input type="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="exemplo@email.com">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Assunto</label>
-                        <select name="subject" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Assunto</label>
+                        <select name="subject" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none">
                             <option>Dúvida sobre Nomeações</option>
                             <option>Denúncia / Relato</option>
                             <option>Sugestão para o Portal</option>
@@ -118,11 +135,11 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Mensagem</label>
-                        <textarea name="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-institucional-600 focus:border-transparent outline-none transition-all" placeholder="Como podemos ajudar?"></textarea>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">Mensagem</label>
+                        <textarea name="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-institucional-600 dark:focus:ring-institucional-400 focus:border-transparent outline-none transition-all" placeholder="Como podemos ajudar?"></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-institucional-900 text-white font-bold py-3 rounded-lg hover:bg-institucional-800 transform active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full bg-institucional-900 dark:bg-institucional-600 text-white font-bold py-3 rounded-lg hover:bg-institucional-800 dark:hover:bg-institucional-500 transform active:scale-95 transition-all flex items-center justify-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
                     </button>
                 </form>
