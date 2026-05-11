@@ -271,4 +271,106 @@
                         <p class="font-bold text-institucional-100 text-base leading-tight mb-1">Gustavo Cembranel</p>
                         <p class="text-xs text-emerald-400 font-semibold mb-2">1º Secretário</p>
                         <p class="text-xs text-slate-300 border-t border-slate-700 pt-2 mt-2 text-justify leading-relaxed">
-                            2º colocado para o cargo Analista Legislativo
+                            2º colocado para o cargo Analista Legislativo - Administrador. <br> Mestre cervejeiro, músico de garagem e um amante de esportes, mas que não pratica nenhum.
+                        </p>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900 dark:border-t-black"></div>
+                    </div>
+                </div>
+
+                <div class="absolute group cursor-help" style="top: 73%; left: 44%; width: 8%; height: 15%;">
+                    <div class="w-full h-full absolute inset-0 border-4 border-transparent rounded-full transition-all duration-300 bg-institucional-900/0"></div>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-slate-900 dark:bg-black text-white rounded-xl p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10 shadow-2xl transform translate-y-2 group-hover:translate-y-0">
+                        <p class="font-bold text-institucional-100 text-base leading-tight mb-1">Júnior Escobar</p>
+                        <p class="text-xs text-emerald-400 font-semibold mb-2">Secretário de Transparência e Porta-Voz</p>
+                        <p class="text-xs text-slate-300 border-t border-slate-700 pt-2 mt-2 text-justify leading-relaxed">
+                            Futuro Técnico Legislativo na área de Administração da Alems <br> Acadêmico de Direito pela UFMS. Defensor da justiça social, espiritualista, voz ativa pela causa LGBTQIA+, apaixonado pela cultura pop e alternativa e detetive amador da comissão nas horas vagas.
+                        </p>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900 dark:border-t-black"></div>
+                    </div>
+                </div>
+
+                <div class="absolute group cursor-help" style="top: 73%; left: 58%; width: 8%; height: 15%;">
+                    <div class="w-full h-full absolute inset-0 border-4 border-transparent rounded-full transition-all duration-300 bg-institucional-900/0"></div>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-slate-900 dark:bg-black text-white rounded-xl p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10 shadow-2xl transform translate-y-2 group-hover:translate-y-0">
+                        <p class="font-bold text-institucional-100 text-base leading-tight mb-1">Vinícius Rodrigues</p>
+                        <p class="text-xs text-emerald-400 font-semibold mb-2">Assessor Jurídico</p>
+                        <p class="text-xs text-slate-300 border-t border-slate-700 pt-2 mt-2 text-justify leading-relaxed">
+                            Habilitado para Técnico Legislativo - Policial Legislativo <br> Bacharel em Direito pela UnB e Policial Militar de Minas Gerais.
+                        </p>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900 dark:border-t-black"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="rodape.js"></script>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon.classList.add('fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+                themeToggleIcon.classList.remove('fa-moon');
+                themeToggleIcon.classList.add('fa-sun');
+            } else {
+                localStorage.theme = 'light';
+                themeToggleIcon.classList.remove('fa-sun');
+                themeToggleIcon.classList.add('fa-moon');
+            }
+        });
+    </script>
+
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .whatsapp-float:hover {
+            background-color: #1ebea5;
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05);
+        }
+    
+        .whatsapp-float img {
+            width: 60%;
+            height: auto;
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        .animate-bounce-slow { animation: bounce-slow 2s infinite; }
+    </style>
+    
+    <a href="https://chat.whatsapp.com/FAvnlALKnq6CH7B6XWW1lf" aria-label="Junte-se à nossa comunidade no WhatsApp" class="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#1ebea5] transition-all z-[9999] animate-bounce-slow" target="_blank" rel="noopener noreferrer" title="Entrar na Comunidade">
+        <i class="fa-brands fa-whatsapp text-3xl" aria-hidden="true"></i>
+    </a>
+</body>
+</html>
