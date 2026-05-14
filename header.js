@@ -6,7 +6,7 @@ document.write(`
                 
                 <div class="flex items-center gap-3">
                     <a href="index.html"><img src="logo.png" alt="Logo CAALEMS" class="h-10 md:h-12 w-auto"></a>
-                    <span class="font-bold text-base md:text-lg tracking-wide hidden xs:block">Comissão ALEMS</span>
+                    <span class="font-bold text-base md:text-lg tracking-wide xs:block">Comissão ALEMS</span>
                 </div>
 
                 <div class="flex items-center gap-2 md:gap-4">
