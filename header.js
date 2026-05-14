@@ -25,7 +25,6 @@ document.write(`
                     <div class="flex flex-col md:flex-row p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1 lg:space-x-2 border-t border-institucional-800 md:border-t-0" id="nav-links">
                         <a href="index.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>
                         <a href="quemsomos.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
-                        <a href="indicadores.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-chart-pie mr-2"></i>Indicadores</a>
                         <a href="lei6279.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
                         <a href="ocupacao.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
                         <a href="publicacoes.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
