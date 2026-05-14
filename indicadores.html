@@ -34,35 +34,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
 
-    <nav class="bg-institucional-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Logo da Comissão de Aprovados da ALEMS" class="h-12 w-auto">
-                    <span class="font-bold text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button id="theme-toggle" aria-label="Alternar tema claro e escuro" class="text-gray-300 hover:text-white focus:outline-none transition-colors" title="Alternar Tema">
-                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl" aria-hidden="true"></i>
-                    </button>
-                    <div class="md:hidden">
-                        <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')" aria-label="Abrir menu de navegação" class="text-gray-300 hover:text-white p-2 focus:outline-none"><i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none z-40">
-                    <div class="flex flex-col md:flex-row md:items-baseline p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-2 border-t border-institucional-800 md:border-t-0">
-                        <a href="index.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-house mr-2" aria-hidden="true"></i>Início</a>
-                        <a href="quemsomos.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users mr-2" aria-hidden="true"></i>Quem Somos</a>
-                        <a href="indicadores.html" class="bg-institucional-800 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-chart-pie mr-2" aria-hidden="true"></i>Indicadores</a>
-                        <a href="lei6279.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i>Lei 6.279</a>
-                        <a href="ocupacao.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-users-viewfinder mr-2" aria-hidden="true"></i>Ocupação</a>
-                        <a href="publicacoes.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-file-lines mr-2" aria-hidden="true"></i>Publicações</a>
-                        <a href="contato.html" class="text-gray-300 hover:bg-institucional-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"><i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>Contato</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <script src="header.js?v=1"></script>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300">
