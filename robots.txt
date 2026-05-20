@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://www.aprovadosalems.dpdns.org/sitemap.xml
+Sitemap: https://www.aprovadosalems.dpdns.org/sitemap.xml
