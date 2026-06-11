@@ -45,7 +45,7 @@ document.write(`
             <h3 class="text-lg font-bold tracking-wider mb-2">Comissão de Aprovados ALEMS</h3>
             
             <p class="text-sm text-slate-400 max-w-2xl mb-6">
-                Em defesa do provimento efetivo no serviço público.
+                Caalems: a favor dos aprovados, em benefício da Alems.
             </p>
             
             <div class="flex gap-6 mb-6">
