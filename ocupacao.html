@@ -30,6 +30,22 @@
       gtag('js', new Date());
       gtag('config', 'G-0Y8HBXXY76');
     </script>
+    <script>
+    if (navigator.modelContext) {
+        navigator.modelContext.provideContext({
+        tools: [{
+            name: "obter_dados_vacancia",
+            description: "Obtém os números atuais de cargos ociosos vs comissionados na ALEMS",
+            inputSchema: { type: "object", properties: {} },
+            execute: async () => {
+            return {
+                resultado: "Vagas Totais: 486. Servidores Ativos: ~85. Vagas Ociosas: 401."
+            };
+            }
+        }]
+        });
+    }
+    </script>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
 
