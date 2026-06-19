@@ -1,0 +1,14 @@
+{
+  "serverInfo": {
+    "name": "CAALEMS MCP",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "sse",
+    "endpoint": "https://www.aprovadosalems.dpdns.org/"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  }
+}

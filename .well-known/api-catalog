@@ -1,0 +1,9 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.aprovadosalems.dpdns.org/",
+      "service-doc": [{"href": "https://www.aprovadosalems.dpdns.org/", "type": "text/html"}],
+      "status": [{"href": "https://www.aprovadosalems.dpdns.org/"}]
+    }
+  ]
+}
