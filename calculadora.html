@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salários | CAALEMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <script>
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
+        }
+    </script>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
+
+    <script src="header.js?v=3"></script>
+
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-2">Calculadora Paramétrica - ALEMS</h2>
+            <p class="text-slate-600 dark:text-slate-300">Simule a remuneração dos cargos efetivos com base na Lei 6.279/2024 e Lei 6.278/2024.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300 w-full">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="flex flex-col gap-5">
+                    <div class="border-b border-slate-200 dark:border-slate-700 pb-2 mb-2">
+                        <h3 class="text-lg font-semibold text-institucional-800 dark:text-institucional-300 flex items-center gap-2">
+                            <i class="fa-solid fa-user-tie"></i> Dados Funcionais
+                        </h3>
+                    </div>
+                    
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Cargo Efetivo</label>
+                        <select id="cg" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                            <option value="t">Técnico Legislativo</option>
+                            <option value="p">Policial Legislativo</option>
+                            <option value="a">Analista Legislativo</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Anos de Exercício (0 a 40)</label>
+                        <input type="number" id="an" min="0" max="40" value="0" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Dependentes Menores/Inválidos</label>
+                        <input type="number" id="dp" min="0" max="10" value="0" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Avaliação de Desempenho Anual (AD)</label>
+                        <select id="ad" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                            <option value="0">Nota < 60%</option>
+                            <option value="0.15">Nota >= 60%</option>
+                            <option value="0.30">Nota >= 70%</option>
+                            <option value="0.45">Nota >= 80%</option>
+                            <option value="0.60">Nota >= 90%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-5">
+                    <div class="border-b border-slate-200 dark:border-slate-700 pb-2 mb-2">
+                        <h3 class="text-lg font-semibold text-institucional-800 dark:text-institucional-300 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap"></i> Qualificação (AQ)
+                        </h3>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 p-5 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-700/30">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="qg" class="w-5 h-5 accent-institucional-600 rounded">
+                            <label for="qg" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Graduação (10%) <span class="text-xs text-slate-500 font-normal">- Apenas Técnicos</span></label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="qe1" class="w-5 h-5 accent-institucional-600 rounded">
+                            <label for="qe1" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização 1 (10%)</label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="qe2" class="w-5 h-5 accent-institucional-600 rounded">
+                            <label for="qe2" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização 2 (10%)</label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="qm" class="w-5 h-5 accent-institucional-600 rounded">
+                            <label for="qm" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Mestrado (15%)</label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="qd" class="w-5 h-5 accent-institucional-600 rounded">
+                            <label for="qd" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Doutorado (20%)</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-10 p-6 md:p-8 bg-slate-100 dark:bg-slate-900/50 rounded-xl border border-slate-300 dark:border-slate-700 shadow-inner">
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-300 dark:border-slate-700 pb-2">Espelho Financeiro</h3>
+                
+                <div class="flex flex-col gap-3 font-medium text-slate-700 dark:text-slate-300">
+                    <div class="flex justify-between"><span>Vencimento Base:</span><span id="ob" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between"><span>Progressão Funcional:</span><span id="op" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Adic. Tempo Serviço (ATS):</span><span id="oats" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Adic. Qualificação (AQ):</span><span id="oaq" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Avaliação Desempenho (AD):</span><span id="oad" class="font-bold">R$ 0,00</span></div>
+                    <div class="justify-between text-amber-600 dark:text-amber-400" id="rpe" style="display:none;"><span>Periculosidade (40%):</span><span id="ope" class="font-bold">R$ 0,00</span></div>
+                    
+                    <div class="flex justify-between mt-2 pt-2 border-t border-slate-300/50 dark:border-slate-700/50"><span>Salário Família:</span><span id="of" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between"><span>Auxílios Fixos:</span><span id="oax" class="font-bold">R$ 0,00</span></div>
+                    
+                    <div class="flex justify-between mt-4 pt-4 border-t border-slate-300 dark:border-slate-600 text-xl md:text-2xl text-slate-900 dark:text-white font-black">
+                        <span>Remuneração Bruta:</span><span id="obr">R$ 0,00</span>
+                    </div>
+
+                    <div class="flex justify-between mt-4 text-red-600 dark:text-red-400"><span>MSPREV (14% Previsto):</span><span id="oms">- R$ 0,00</span></div>
+                    <div class="flex justify-between text-red-600 dark:text-red-400"><span>IRRF Retido:</span><span id="oir">- R$ 0,00</span></div>
+
+                    <div class="flex justify-between mt-4 pt-4 border-t-4 border-emerald-500 text-2xl md:text-3xl text-emerald-700 dark:text-emerald-400 font-black">
+                        <span>Salário Líquido Estimado:</span><span id="oli">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 text-xs text-slate-500 text-center">
+                * Os cálculos apresentados são simulados com base nas tabelas das Leis 6.278 e 6.279. Esta ferramenta tem caráter meramente informativo e não substitui o contracheque oficial emitido pelo setor de Gestão de Pessoas da ALEMS.
+            </div>
+
+        </div>
+    </main>
+
+    <script src="rodape.js?v=2"></script>
+
+    <script>
+        const fmt=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+        const mP=a=>{const r=[0,1,1,2,2,2,3,4,4,5,5,5,6,7,7,8,8,8,9,10,10,11,11,11,12,13,13,14],m=[1,1.03,1.0609,1.113945,1.147363,1.181784,1.240873,1.278099,1.316442,1.382264,1.423732,1.466444,1.539766,1.585959,1.633538];return m[r[Math.min(Math.max(0,a),27)]]};
+        const cIR=(b,d)=>{let bc=b-(d*189.59);if(bc<=5000)return 0;if(bc<=7350)return Math.max(0,(bc*.275)-908.73-(978.62-(.133145*bc)));return Math.max(0,(bc*.275)-908.73)};
+        
+        const calc=()=>{
+            let cg=document.getElementById('cg').value,
+                an=parseInt(document.getElementById('an').value)||0,
+                dp=parseInt(document.getElementById('dp').value)||0,
+                ad=parseFloat(document.getElementById('ad').value);
+            
+            let iA=cg==='a', iP=cg==='p', qg=document.getElementById('qg');
+            
+            if(iA){qg.checked=false;qg.disabled=true}else{qg.disabled=false}
+            
+            let bC=iA?8437:5160.75,
+                bA=8437,
+                vP=(bC*mP(an))-bC,
+                bP=bC+vP,
+                vATS=bP*Math.min(an*.01,.40),
+                pAQ=0;
+            
+            if(qg.checked&&!iA)pAQ+=.10;
+            if(document.getElementById('qe1').checked)pAQ+=.10;
+            if(document.getElementById('qe2').checked)pAQ+=.10;
+            if(document.getElementById('qm').checked)pAQ+=.15;
+            if(document.getElementById('qd').checked)pAQ+=.20;
+            
+            let vAQ=bA*Math.min(pAQ,.40),
+                vAD=bA*ad,
+                vPE=0;
+            
+            document.getElementById('rpe').style.display=iP?'flex':'none';
+            if(iP)vPE=bC*.40;
+            
+            let vF=bP<=1819.26?dp*62.04:0,
+                vAX=3000,
+                rT=bP+vATS+vAQ+vAD+vPE,
+                rB=rT+vF+vAX,
+                vMS=rT*.14,
+                vIR=cIR(rT-vMS,dp),
+                rL=rB-vMS-vIR;
+            
+            document.getElementById('ob').innerText=fmt(bC);
+            document.getElementById('op').innerText=fmt(vP);
+            document.getElementById('oats').innerText=fmt(vATS);
+            document.getElementById('oaq').innerText=fmt(vAQ);
+            document.getElementById('oad').innerText=fmt(vAD);
+            
+            if(iP)document.getElementById('ope').innerText=fmt(vPE);
+            
+            document.getElementById('of').innerText=fmt(vF);
+            document.getElementById('oax').innerText=fmt(vAX);
+            document.getElementById('obr').innerText=fmt(rB);
+            document.getElementById('oms').innerText='- '+fmt(vMS);
+            document.getElementById('oir').innerText='- '+fmt(vIR);
+            document.getElementById('oli').innerText=fmt(rL);
+        };
+        
+        document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calc));
+        window.onload=calc;
+    </script>
+</body>
+</html>

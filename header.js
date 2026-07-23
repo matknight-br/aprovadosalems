@@ -29,6 +29,7 @@ document.write(`
                         <a href="planilha.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-list-ol mr-2"></i>Lista de Aprovados</a>
                         <a href="ocupacao.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
                         <a href="publicacoes.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
+                        <a href="calculadora.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>
                         <a href="contato.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
                     </div>
                 </div>
