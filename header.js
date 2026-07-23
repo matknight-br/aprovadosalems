@@ -13,7 +13,8 @@ document.write(`
                 <div id="nav-menu" class="hidden md:flex absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none transition-all duration-300">
                     <div class="flex flex-col md:flex-row p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1 lg:space-x-2 border-t border-institucional-800 md:border-t-0 w-full md:w-auto" id="nav-links">
                         
-                        <a href="index.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>                        
+                        <a href="index.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        
                         <a href="quemsomos.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
                         
                         <div class="relative group">
@@ -29,14 +30,16 @@ document.write(`
                             </div>
                         </div>
 
-                        <a href="publicacoes.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>   
-                        <a href="calculadora.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>                        
+                        <a href="publicacoes.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
+                        
+                        <a href="calculadora.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>
+                        
                         <a href="contato.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2 ml-2 md:ml-4">
-                    <button id="theme-toggle" aria-label="Alternar tema" class="text-gray-300 hover:text-white p-2 focus:outline-none transition-colors">
+                    <button onclick="window.toggleTheme()" aria-label="Alternar tema" class="text-gray-300 hover:text-white p-2 focus:outline-none transition-colors">
                         <i id="theme-toggle-icon" class="fa-solid fa-moon text-xl"></i>
                     </button>
                     
@@ -54,12 +57,52 @@ document.write(`
 `);
 
 // ==========================================
-// SCRIPTS E LÓGICA (Fora do document.write)
+// FUNÇÃO GLOBAL DE TEMA (À Prova de Falhas)
 // ==========================================
+window.toggleTheme = function() {
+    const htmlElement = document.documentElement;
+    const icon = document.getElementById('theme-toggle-icon');
+    
+    // Alterna a classe dark no HTML
+    htmlElement.classList.toggle('dark');
+    
+    // Salva a preferência
+    if (htmlElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        if(icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    } else {
+        localStorage.setItem('theme', 'light');
+        if(icon) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
+};
 
+// ==========================================
+// OUTROS SCRIPTS DE MENU
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. LÓGICA DO MENU MOBILE
+    // 1. Atualizar Ícone no carregamento
+    const themeIcon = document.getElementById('theme-toggle-icon');
+    if(themeIcon) {
+        if (document.documentElement.classList.contains('dark') || localStorage.getItem('theme') === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            // Garante que o HTML tenha a classe caso falhe
+            document.documentElement.classList.add('dark');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            document.documentElement.classList.remove('dark');
+        }
+    }
+
+    // 2. LÓGICA DO MENU MOBILE
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     
@@ -69,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. LÓGICA DO MENU SUSPENSO (DROPDOWN)
+    // 3. LÓGICA DO MENU SUSPENSO (DROPDOWN)
     const transBtn = document.getElementById('transparencia-btn');
     const transMenu = document.getElementById('transparencia-menu');
     const transIcon = document.getElementById('transparencia-icon');
@@ -116,34 +159,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 transIcon.classList.remove('rotate-180');
             }
         });
-    }
-
-    // 3. LÓGICA DO TEMA ESCURO (DARK MODE)
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleIcon = document.getElementById('theme-toggle-icon');
-
-    function updateIcon() {
-        if (document.documentElement.classList.contains('dark')) {
-            themeToggleIcon.classList.remove('fa-moon');
-            themeToggleIcon.classList.add('fa-sun');
-        } else {
-            themeToggleIcon.classList.remove('fa-sun');
-            themeToggleIcon.classList.add('fa-moon');
-        }
-    }
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function() {
-            document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-            updateIcon();
-        });
-        
-        // Atualiza o ícone logo ao carregar a página
-        updateIcon();
     }
 });
