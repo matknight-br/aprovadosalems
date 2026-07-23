@@ -4,7 +4,7 @@ document.write(`
         <div class="flex items-center justify-between h-16 w-full">
             
             <div class="flex-shrink-0 flex items-center gap-3">
-                <a href="index"><img src="logo.png" alt="Logo CAALEMS" class="h-10 md:h-12 w-auto"></a>
+                <a href="/index"><img src="logo.png" alt="Logo CAALEMS" class="h-10 md:h-12 w-auto"></a>
                 <span class="font-bold text-base md:text-lg tracking-wide hidden sm:block">Comissão ALEMS</span>
             </div>
 
@@ -13,9 +13,8 @@ document.write(`
                 <div id="nav-menu" class="hidden md:flex absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none transition-all duration-300">
                     <div class="flex flex-col md:flex-row p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1 lg:space-x-2 border-t border-institucional-800 md:border-t-0 w-full md:w-auto" id="nav-links">
                         
-                        <a href="index" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>
-                        
-                        <a href="quemsomos" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
+                        <a href="/index" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>                        
+                        <a href="/quemsomos" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
                         
                         <div class="relative group">
                             <button id="transparencia-btn" class="nav-item flex items-center justify-between w-full md:w-auto px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800 focus:outline-none">
@@ -24,17 +23,15 @@ document.write(`
                             </button>
                             
                             <div id="transparencia-menu" class="hidden md:absolute md:top-full md:left-0 md:mt-1 md:w-48 bg-institucional-800 md:bg-white md:dark:bg-slate-800 md:shadow-lg rounded-md overflow-hidden flex-col pl-6 md:pl-0 md:border border-slate-200 dark:border-slate-700">
-                                <a href="lei6279" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-book-open w-5 text-center mr-2 text-emerald-400 md:text-emerald-600"></i> Lei 6.279</a>
-                                <a href="planilha" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-list-ol w-5 text-center mr-2 text-blue-400 md:text-blue-600"></i> Aprovados</a>
-                                <a href="ocupacao" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-users-viewfinder w-5 text-center mr-2 text-amber-400 md:text-amber-600"></i> Ocupação Ativa</a>
+                                <a href="/lei6279" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-book-open w-5 text-center mr-2 text-emerald-400 md:text-emerald-600"></i> Lei 6.279</a>
+                                <a href="/planilha" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-list-ol w-5 text-center mr-2 text-blue-400 md:text-blue-600"></i> Aprovados</a>
+                                <a href="/ocupacao" class="block px-4 py-3 text-sm font-medium text-white md:text-slate-700 md:dark:text-slate-200 hover:bg-institucional-700 md:hover:bg-slate-100 md:dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-users-viewfinder w-5 text-center mr-2 text-amber-400 md:text-amber-600"></i> Ocupação Ativa</a>
                             </div>
                         </div>
 
-                        <a href="publicacoes" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
-                        
-                        <a href="calculadora" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>
-                        
-                        <a href="contato" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
+                        <a href="/publicacoes" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>                        
+                        <a href="/calculadora" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>                        
+                        <a href="/contato" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
                     </div>
                 </div>
 
