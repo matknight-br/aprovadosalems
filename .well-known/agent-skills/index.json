@@ -5,7 +5,7 @@
       "name": "Consultar Vagas Ociosas ALEMS",
       "type": "api",
       "description": "Retorna os dados atualizados das vacâncias e cargos comissionados da Assembleia Legislativa do MS expostos pela CAALEMS.",
-      "url": "https://www.aprovadosalems.dpdns.org/ocupacao.html"
+      "url": "https://www.aprovadosalems.dpdns.org/ocupacao"
     }
   ]
 }
