@@ -23,14 +23,14 @@ document.write(`
 
                 <div id="nav-menu" class="hidden md:block absolute top-16 left-0 w-full bg-institucional-900 shadow-xl md:static md:w-auto md:bg-transparent md:shadow-none">
                     <div class="flex flex-col md:flex-row p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1 lg:space-x-2 border-t border-institucional-800 md:border-t-0" id="nav-links">
-                        <a href="index.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>
-                        <a href="quemsomos.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
-                        <a href="lei6279.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
-                        <a href="planilha.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-list-ol mr-2"></i>Lista de Aprovados</a>
-                        <a href="ocupacao.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
-                        <a href="publicacoes.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
-                        <a href="calculadora.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>
-                        <a href="contato.html" class="nav-item flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
+                        <a href="index.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-house mr-2"></i>Início</a>
+                        <a href="quemsomos.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users mr-2"></i>Quem Somos</a>
+                        <a href="lei6279.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-book-open mr-2"></i>Lei 6.279</a>
+                        <a href="planilha.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-list-ol mr-2"></i>Lista de Aprovados</a>
+                        <a href="ocupacao.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-users-viewfinder mr-2"></i>Ocupação</a>
+                        <a href="publicacoes.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-file-lines mr-2"></i>Publicações</a>
+                        <a href="calculadora.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-calculator mr-2"></i>Calculadora</a>
+                        <a href="contato.html" class="nav-item flex items-center px-2 py-2 rounded-md text-xs font-medium tracking-tight whitespace-nowrap transition-colors hover:bg-institucional-800"><i class="fa-solid fa-envelope mr-2"></i>Contato</a>
                     </div>
                 </div>
 
