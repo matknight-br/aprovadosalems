@@ -17,12 +17,14 @@
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
         }
     </script>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
 
-    <script src="header.js?v=9"></script>
+    <script src="header.js?v=3"></script>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300 w-full">
@@ -33,22 +35,122 @@
                 <p class="text-slate-600 dark:text-slate-300">Para edição de suas informações, solicite acesso à planilha, que está presente <u><a href="https://docs.google.com/spreadsheets/d/1XsJUScpQLzBEv3Che1S-e-sC6FvTtV3C/edit?gid=1098950830#gid=1098950830">aqui</a></u></p>
             </div>
 
-            <div class="relative w-full h-[600px] md:h-[800px] rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 bg-white">
+            <!-- MOTOR DE BUSCA CAALEMS -->
+            <div class="mb-6 bg-slate-50 dark:bg-slate-700/30 p-4 md:p-5 rounded-xl border border-slate-200 dark:border-slate-600 flex flex-col md:flex-row gap-4 items-center shadow-sm">
+                <div class="relative w-full md:flex-grow">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                    <input type="text" id="termoBusca" placeholder="Digite o nome do candidato (ex: João Silva)..." class="w-full pl-11 pr-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow" onkeypress="if(event.key === 'Enter') realizarBusca()">
+                </div>
+                <button onclick="realizarBusca()" class="w-full md:w-auto bg-institucional-600 hover:bg-institucional-700 text-white font-bold px-8 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md">
+                    Buscar Nome
+                </button>
+            </div>
+
+            <!-- CAIXA DE RESULTADOS DA BUSCA (Escondida por padrão) -->
+            <div id="resultadoBusca" class="hidden mb-8 transition-all duration-300"></div>
+
+            <!-- Container da Planilha Iframe -->
+            <div class="relative w-full h-[600px] md:h-[800px] rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 bg-white shadow-inner">
+                
+                <!-- IMPORTANTE: Cole o seu link PUBHTML gerado pelo Google aqui -->
                 <iframe 
+                    id="planilhaIframe"
                     src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQJCVh6WFJ3LTZ3KkN0uBTm8XZjq1dwRXGZTMupEApZ7j7zN7_EoVL27crVNBFRQA/pubhtml?widget=true&amp;headers=false" 
                     class="absolute top-0 left-0 w-full h-full border-0"
                     title="Lista de Aprovados por Cargo">
                 </iframe>
+
             </div>
 
-            <div class="mt-4 text-center">
-                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQJCVh6WFJ3LTZ3KkN0uBTm8XZjq1dwRXGZTMupEApZ7j7zN7_EoVL27crVNBFRQA/pubhtml?widget=true&amp;headers=false" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-institucional-600 dark:text-institucional-400 hover:underline">
-                    Abrir lista em tela cheia <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+            <div class="mt-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm">
+                <span class="text-slate-500 dark:text-slate-400"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> Dica: Clique dentro da planilha e pressione <strong>Ctrl + F</strong> para usar a busca nativa.</span>
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQJCVh6WFJ3LTZ3KkN0uBTm8XZjq1dwRXGZTMupEApZ7j7zN7_EoVL27crVNBFRQA/pubhtml?widget=true&amp;headers=false" target="_blank" rel="noopener noreferrer" class="font-semibold text-institucional-600 dark:text-institucional-400 hover:underline flex items-center gap-2">
+                    Abrir lista em tela cheia <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
         </div>
     </main>
 
     <script src="rodape.js?v=2"></script>
+
+    <!-- SCRIPT DO MOTOR DE BUSCA -->
+    <script>
+        async function realizarBusca() {
+            const termo = document.getElementById('termoBusca').value.trim().toLowerCase();
+            const divResultado = document.getElementById('resultadoBusca');
+            const iframeSrc = document.getElementById('planilhaIframe').src;
+
+            // Validação simples
+            if(termo.length < 3) {
+                mostrarAlerta(divResultado, "amber", "fa-triangle-exclamation", "Digite pelo menos 3 letras para realizar a busca.");
+                return;
+            }
+
+            // Mostra o status de carregamento
+            mostrarAlerta(divResultado, "blue", "fa-spinner fa-spin", "Procurando na base de dados oficial...");
+
+            // Lógica para transformar o link HTML num link de exportação CSV (A magia acontece aqui!)
+            let csvUrl = iframeSrc.split('?')[0]; // Remove parâmetros antigos
+            if (csvUrl.includes('/pubhtml')) {
+                csvUrl = csvUrl.replace('/pubhtml', '/pub') + '?output=csv';
+            } else {
+                mostrarAlerta(divResultado, "amber", "fa-circle-info", "Utilize a busca pressionando Ctrl+F na planilha abaixo.");
+                return;
+            }
+
+            try {
+                // Faz o download silencioso dos dados da planilha
+                const resposta = await fetch(csvUrl);
+                if(!resposta.ok) throw new Error("Falha ao acessar os dados.");
+                const texto = await resposta.text();
+
+                // Separa os dados linha por linha
+                const linhas = texto.split(/\r?\n/);
+                let encontrados = [];
+
+                // Verifica linha por linha
+                for(let i = 0; i < linhas.length; i++) {
+                    if(linhas[i].toLowerCase().includes(termo)) {
+                        // Limpa a formatação bruta do CSV para exibir bonito
+                        let linhaLimpa = linhas[i].replace(/(^"|"$)/g, '').replace(/","/g, ' <span class="text-slate-300 mx-2">|</span> ').replace(/,/g, ' <span class="text-slate-300 mx-2">|</span> ');
+                        encontrados.push(linhaLimpa);
+                    }
+                }
+
+                // Renderiza o resultado final na tela
+                if(encontrados.length > 0) {
+                    divResultado.className = "mb-8 p-5 rounded-xl border border-emerald-300 bg-emerald-50 dark:bg-emerald-900/20";
+                    let html = `<h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-4 text-lg"><i class="fa-solid fa-check-circle mr-2"></i>Candidato(s) Encontrado(s) (${encontrados.length}):</h4>`;
+                    html += `<div class="space-y-3">`;
+                    encontrados.forEach(enc => {
+                        html += `<div class="p-4 bg-white dark:bg-slate-800 rounded-lg border border-emerald-200 dark:border-emerald-800/50 shadow-sm text-sm md:text-base font-medium text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-user-check text-emerald-500 mr-2"></i> ${enc}
+                        </div>`;
+                    });
+                    html += `</div>`;
+                    divResultado.innerHTML = html;
+                } else {
+                    mostrarAlerta(divResultado, "slate", "fa-magnifying-glass-minus", `Nenhum candidato encontrado com o termo "<strong>${termo}</strong>". Tente buscar pelo primeiro ou último nome.`);
+                }
+
+            } catch(erro) {
+                console.error("Erro na busca:", erro);
+                mostrarAlerta(divResultado, "red", "fa-circle-exclamation", "Ocorreu um erro ao buscar automaticamente. Por favor, clique na planilha abaixo e pressione <strong>Ctrl + F</strong> para buscar manualmente.");
+            }
+        }
+
+        // Função auxiliar para padronizar os balões de aviso
+        function mostrarAlerta(elemento, cor, icone, mensagem) {
+            const corClasses = {
+                "amber": "border-amber-300 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200",
+                "blue": "border-blue-300 bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200",
+                "red": "border-red-300 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200",
+                "slate": "border-slate-300 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+            };
+            elemento.className = `mb-8 p-5 rounded-xl border ${corClasses[cor]}`;
+            elemento.innerHTML = `<p class="text-base"><i class="fa-solid ${icone} mr-2"></i>${mensagem}</p>`;
+            elemento.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
