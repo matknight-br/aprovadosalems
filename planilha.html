@@ -73,56 +73,84 @@
 
     <script src="rodape.js?v=2"></script>
 
-    <!-- SCRIPT DO MOTOR DE BUSCA -->
+    <!-- SCRIPT DO MOTOR DE BUSCA MULTI-ABAS CAALEMS -->
     <script>
         async function realizarBusca() {
             const termo = document.getElementById('termoBusca').value.trim().toLowerCase();
             const divResultado = document.getElementById('resultadoBusca');
             const iframeSrc = document.getElementById('planilhaIframe').src;
 
-            // Validação simples
+            // 1. COLOQUE AQUI OS GIDs DAS SUAS ABAS DA PLANILHA "Comissão de Aprovados - ALMS"
+            // Adicione os números que encontrou na URL da sua planilha entre aspas, separados por vírgula.
+            // Exemplo: ["0", "84729104", "19384752"]
+            const abasGIDs = ["0", "1218098530", "298775190", "918773584", "620480226", "286750460", "829815946", "1416161049", "1599294742", "1684576959", "1098950830", "1475115150", "872586762", "1965289506", "282365435", "619493339", "516085165", "199896822", "2008608420", "784391876"]; // Substitua pelos GIDs reais das suas abas
+
             if(termo.length < 3) {
                 mostrarAlerta(divResultado, "amber", "fa-triangle-exclamation", "Digite pelo menos 3 letras para realizar a busca.");
                 return;
             }
 
-            // Mostra o status de carregamento
-            mostrarAlerta(divResultado, "blue", "fa-spinner fa-spin", "Procurando na base de dados oficial...");
+            mostrarAlerta(divResultado, "blue", "fa-spinner fa-spin", "Procurando simultaneamente em todas as abas da base de dados...");
 
-            // Lógica para transformar o link HTML num link de exportação CSV (A magia acontece aqui!)
-            let csvUrl = iframeSrc.split('?')[0]; // Remove parâmetros antigos
-            if (csvUrl.includes('/pubhtml')) {
-                csvUrl = csvUrl.replace('/pubhtml', '/pub') + '?output=csv';
+            // Limpa e prepara o link base
+            let baseUrl = iframeSrc.split('?')[0]; 
+            if (baseUrl.includes('/pubhtml')) {
+                baseUrl = baseUrl.replace('/pubhtml', '/pub');
             } else {
                 mostrarAlerta(divResultado, "amber", "fa-circle-info", "Utilize a busca pressionando Ctrl+F na planilha abaixo.");
                 return;
             }
 
             try {
-                // Faz o download silencioso dos dados da planilha
-                const resposta = await fetch(csvUrl);
-                if(!resposta.ok) throw new Error("Falha ao acessar os dados.");
-                const texto = await resposta.text();
+                let todosEncontrados = [];
 
-                // Separa os dados linha por linha
-                const linhas = texto.split(/\r?\n/);
-                let encontrados = [];
+                // 2. Dispara a busca em todas as abas ao mesmo tempo (Garante altíssima velocidade)
+                const promessas = abasGIDs.map(async (gid) => {
+                    // Ignora caso você tenha deixado o texto de exemplo "COLE_O_GID..."
+                    if(gid.includes("COLE_O_GID")) return [];
 
-                // Verifica linha por linha
-                for(let i = 0; i < linhas.length; i++) {
-                    if(linhas[i].toLowerCase().includes(termo)) {
-                        // Limpa a formatação bruta do CSV para exibir bonito
-                        let linhaLimpa = linhas[i].replace(/(^"|"$)/g, '').replace(/","/g, ' <span class="text-slate-300 mx-2">|</span> ').replace(/,/g, ' <span class="text-slate-300 mx-2">|</span> ');
-                        encontrados.push(linhaLimpa);
+                    const urlAba = `${baseUrl}?single=true&gid=${gid}&output=csv`;
+                    const resposta = await fetch(urlAba);
+                    
+                    if(!resposta.ok) return [];
+                    
+                    const texto = await resposta.text();
+                    const linhas = texto.split(/\r?\n/);
+                    let encontradosAba = [];
+
+                    for(let i = 0; i < linhas.length; i++) {
+                        if(linhas[i].toLowerCase().includes(termo)) {
+                            // Limpa as aspas e vírgulas do CSV e coloca uma barra vertical estilizada
+                            let linhaLimpa = linhas[i].replace(/(^"|"$)/g, '').replace(/","/g, ' <span class="text-slate-300 mx-2">|</span> ').replace(/,/g, ' <span class="text-slate-300 mx-2">|</span> ');
+                            
+                            // Evita que linhas totalmente vazias da planilha sejam mostradas
+                            if (linhaLimpa.replace(/<[^>]*>?/gm, '').trim() !== "") {
+                                encontradosAba.push(linhaLimpa);
+                            }
+                        }
                     }
-                }
+                    return encontradosAba;
+                });
+
+                // Espera que todas as abas terminem de ser vasculhadas
+                const resultadosPorAba = await Promise.all(promessas);
+                
+                // Junta todos os resultados
+                resultadosPorAba.forEach(res => {
+                    todosEncontrados = todosEncontrados.concat(res);
+                });
+
+                // Remove possíveis resultados duplicados (como linhas de cabeçalho idênticas)
+                todosEncontrados = [...new Set(todosEncontrados)];
 
                 // Renderiza o resultado final na tela
-                if(encontrados.length > 0) {
+                if(todosEncontrados.length > 0) {
                     divResultado.className = "mb-8 p-5 rounded-xl border border-emerald-300 bg-emerald-50 dark:bg-emerald-900/20";
-                    let html = `<h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-4 text-lg"><i class="fa-solid fa-check-circle mr-2"></i>Candidato(s) Encontrado(s) (${encontrados.length}):</h4>`;
-                    html += `<div class="space-y-3">`;
-                    encontrados.forEach(enc => {
+                    let html = `<h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-4 text-lg"><i class="fa-solid fa-check-circle mr-2"></i>Candidato(s) Encontrado(s) (${todosEncontrados.length}):</h4>`;
+                    
+                    // Cria uma caixa com barra de rolagem (scroll) caso ache muitas pessoas
+                    html += `<div class="space-y-3 max-h-[400px] overflow-y-auto pr-2">`;
+                    todosEncontrados.forEach(enc => {
                         html += `<div class="p-4 bg-white dark:bg-slate-800 rounded-lg border border-emerald-200 dark:border-emerald-800/50 shadow-sm text-sm md:text-base font-medium text-slate-700 dark:text-slate-200">
                             <i class="fa-solid fa-user-check text-emerald-500 mr-2"></i> ${enc}
                         </div>`;
@@ -130,16 +158,16 @@
                     html += `</div>`;
                     divResultado.innerHTML = html;
                 } else {
-                    mostrarAlerta(divResultado, "slate", "fa-magnifying-glass-minus", `Nenhum candidato encontrado com o termo "<strong>${termo}</strong>". Tente buscar pelo primeiro ou último nome.`);
+                    mostrarAlerta(divResultado, "slate", "fa-magnifying-glass-minus", `Nenhum candidato encontrado com o termo "<strong>${termo}</strong>" em nenhuma das abas.`);
                 }
 
             } catch(erro) {
-                console.error("Erro na busca:", erro);
-                mostrarAlerta(divResultado, "red", "fa-circle-exclamation", "Ocorreu um erro ao buscar automaticamente. Por favor, clique na planilha abaixo e pressione <strong>Ctrl + F</strong> para buscar manualmente.");
+                console.error("Erro na busca multi-abas:", erro);
+                mostrarAlerta(divResultado, "red", "fa-circle-exclamation", "Ocorreu um erro de rede. Por favor, clique na planilha abaixo e pressione <strong>Ctrl + F</strong> para buscar manualmente.");
             }
         }
 
-        // Função auxiliar para padronizar os balões de aviso
+        // Função de estilo para alertas
         function mostrarAlerta(elemento, cor, icone, mensagem) {
             const corClasses = {
                 "amber": "border-amber-300 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200",
