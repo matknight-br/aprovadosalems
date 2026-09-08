@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Salários | CAALEMS</title>
+    <title>Calculadora de Salário | CAALEMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="favicon.png">
-    
+
     <script>
-        tailwind.config = { 
+        tailwind.config = {
             darkMode: 'class',
-            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } } 
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { institucional: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985', 900: '#0c4a6e' } } } }
         }
     </script>
     <script>
@@ -24,77 +24,80 @@
     </script>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
-
     <script src="header.js?v=9"></script>
-
+    
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        
-        <div class="mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-2">Calculadora Paramétrica - ALEMS</h2>
-            <p class="text-slate-600 dark:text-slate-300">Simule a remuneração dos cargos efetivos com base na Lei 6.279/2024 e Lei 6.278/2024.</p>
-        </div>
 
+        <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-2">Simulador de Remuneração: ALEMS 2026</h2>
+            <p class="text-slate-600 dark:text-slate-300">Cálculo estruturado conforme a Lei 6.279/2024 e Lei 6.278/2024, considerando a projeção do Edital 2025.</p>
+        </div>
+        
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300 w-full">
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
+
+                <!-- Dados Funcionais -->
                 <div class="flex flex-col gap-5">
                     <div class="border-b border-slate-200 dark:border-slate-700 pb-2 mb-2">
                         <h3 class="text-lg font-semibold text-institucional-800 dark:text-institucional-300 flex items-center gap-2">
                             <i class="fa-solid fa-user-tie"></i> Dados Funcionais
                         </h3>
                     </div>
-                    
+
                     <div class="flex flex-col gap-1">
                         <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Cargo Efetivo</label>
                         <select id="cg" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
-                            <option value="t">Técnico Legislativo</option>
-                            <option value="p">Policial Legislativo</option>
-                            <option value="a">Analista Legislativo</option>
+                            <option value="a" selected>Analista Legislativo (Superior)</option>
+                            <option value="t">Técnico Legislativo (Médio)</option>
+                            <option value="p">Polícia Legislativa (Médio)</option>
                         </select>
                     </div>
-
+                    
                     <div class="flex flex-col gap-1">
                         <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Anos de Exercício (0 a 40)</label>
                         <input type="number" id="an" min="0" max="40" value="0" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                        <span id="refInfo" class="text-xs text-slate-500 dark:text-slate-400 mt-1"></span>
                     </div>
-
+                    
                     <div class="flex flex-col gap-1">
-                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Dependentes Menores/Inválidos</label>
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Dependentes (Dedução no IRRF)</label>
                         <input type="number" id="dp" min="0" max="10" value="0" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1">A legislação não prevê salário-família geral; afeta apenas a dedução de R$ 189,59 por dependente no cálculo do IRRF.</span>
                     </div>
-
+                    
                     <div class="flex flex-col gap-1">
                         <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Avaliação de Desempenho Anual (AD)</label>
                         <select id="ad" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
-                            <option value="0">Nota < 60%</option>
-                            <option value="0.15">Nota >= 60%</option>
-                            <option value="0.30">Nota >= 70%</option>
-                            <option value="0.45">Nota >= 80%</option>
-                            <option value="0.60">Nota >= 90%</option>
+                            <option value="0">Nota obtida: até 59%</option>
+                            <option value="0.15">Nota obtida: entre 60% e 69%</option>
+                            <option value="0.30">Nota obtida: entre 70% e 79%</option>
+                            <option value="0.45">Nota obtida: entre 80% e 89%</option>
+                            <option value="0.60">Nota obtida: entre 90% e 100%</option>
                         </select>
                     </div>
                 </div>
-
+                
+                <!-- Adicional de Qualificação -->
                 <div class="flex flex-col gap-5">
                     <div class="border-b border-slate-200 dark:border-slate-700 pb-2 mb-2">
                         <h3 class="text-lg font-semibold text-institucional-800 dark:text-institucional-300 flex items-center gap-2">
-                            <i class="fa-solid fa-graduation-cap"></i> Qualificação (AQ)
+                            <i class="fa-solid fa-graduation-cap"></i> Qualificação (AQ) <span class="text-slate-400">*</span>
                         </h3>
                     </div>
-                    
+
                     <div class="flex flex-col gap-4 p-5 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-700/30">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="qg" class="w-5 h-5 accent-institucional-600 rounded">
-                            <label for="qg" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Graduação (10%) <span class="text-xs text-slate-500 font-normal">- Apenas Técnicos</span></label>
+                            <label for="qg" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">2ª Graduação (10%) <span class="text-xs text-slate-500 font-normal">- Não conta a exigida para o ingresso</span></label>
                         </div>
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="qe1" class="w-5 h-5 accent-institucional-600 rounded">
-                            <label for="qe1" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização 1 (10%)</label>
+                            <label for="qe1" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização / Lato Sensu 1 (10%)</label>
                         </div>
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="qe2" class="w-5 h-5 accent-institucional-600 rounded">
-                            <label for="qe2" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização 2 (10%)</label>
+                            <label for="qe2" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Especialização / Lato Sensu 2 (10%)</label>
                         </div>
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="qm" class="w-5 h-5 accent-institucional-600 rounded">
@@ -104,108 +107,159 @@
                             <input type="checkbox" id="qd" class="w-5 h-5 accent-institucional-600 rounded">
                             <label for="qd" class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Doutorado (20%)</label>
                         </div>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">Soma limitada ao teto de 40% (Regulamento IV, Anexo IV, Art. 2º, §3º, Lei 6.279/2024).</span>
                     </div>
                 </div>
-
             </div>
-
+            
+            <!-- Resultados -->
             <div class="mt-10 p-6 md:p-8 bg-slate-100 dark:bg-slate-900/50 rounded-xl border border-slate-300 dark:border-slate-700 shadow-inner">
-                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-300 dark:border-slate-700 pb-2">Espelho Financeiro</h3>
-                
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-300 dark:border-slate-700 pb-2">Espelho Financeiro Estimado</h3>
+
                 <div class="flex flex-col gap-3 font-medium text-slate-700 dark:text-slate-300">
-                    <div class="flex justify-between"><span>Vencimento Base:</span><span id="ob" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between"><span>Vencimento Básico (Referência 1):</span><span id="ob" class="font-bold">R$ 0,00</span></div>
                     <div class="flex justify-between"><span>Progressão Funcional:</span><span id="op" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between border-t border-slate-300/50 dark:border-slate-700/50 pt-2"><span>Vencimento Básico Atual:</span><span id="obc" class="font-bold text-institucional-700 dark:text-institucional-300">R$ 0,00</span></div>
+                    
+                    <div class="flex justify-between mt-2 text-institucional-600 dark:text-institucional-400"><span>Adic. Encargos Especiais (150%):</span><span id="oee" class="font-bold">R$ 0,00</span></div>
                     <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Adic. Tempo Serviço (ATS):</span><span id="oats" class="font-bold">R$ 0,00</span></div>
                     <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Adic. Qualificação (AQ):</span><span id="oaq" class="font-bold">R$ 0,00</span></div>
                     <div class="flex justify-between text-institucional-600 dark:text-institucional-400"><span>Avaliação Desempenho (AD):</span><span id="oad" class="font-bold">R$ 0,00</span></div>
                     <div class="justify-between text-amber-600 dark:text-amber-400" id="rpe" style="display:none;"><span>Periculosidade (40%):</span><span id="ope" class="font-bold">R$ 0,00</span></div>
-                    
-                    <div class="flex justify-between mt-2 pt-2 border-t border-slate-300/50 dark:border-slate-700/50"><span>Salário Família:</span><span id="of" class="font-bold">R$ 0,00</span></div>
-                    <div class="flex justify-between"><span>Auxílios Fixos:</span><span id="oax" class="font-bold">R$ 0,00</span></div>
-                    
+
+                    <div class="flex justify-between mt-2 pt-2 border-t border-slate-300/50 dark:border-slate-700/50"><span>Auxílio-Saúde:</span><span id="oax" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between"><span>Auxílio-Alimentação:</span><span id="oal" class="font-bold">R$ 0,00</span></div>
+                    <div class="flex justify-between"><span>Auxílio-Transporte:</span><span id="otr" class="font-bold">R$ 0,00</span></div>
+
                     <div class="flex justify-between mt-4 pt-4 border-t border-slate-300 dark:border-slate-600 text-xl md:text-2xl text-slate-900 dark:text-white font-black">
                         <span>Remuneração Bruta:</span><span id="obr">R$ 0,00</span>
                     </div>
-
+                    
                     <div class="flex justify-between mt-4 text-red-600 dark:text-red-400"><span>MSPREV (14% Previsto):</span><span id="oms">- R$ 0,00</span></div>
                     <div class="flex justify-between text-red-600 dark:text-red-400"><span>IRRF Retido:</span><span id="oir">- R$ 0,00</span></div>
-
+                    
                     <div class="flex justify-between mt-4 pt-4 border-t-4 border-emerald-500 text-2xl md:text-3xl text-emerald-700 dark:text-emerald-400 font-black">
                         <span>Salário Líquido Estimado:</span><span id="oli">R$ 0,00</span>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-4 text-xs text-slate-500 text-center">
-                * Os cálculos apresentados são simulados com base nas tabelas das Leis 6.278 e 6.279. Esta ferramenta tem caráter meramente informativo e não substitui o contracheque oficial emitido pelo setor de Gestão de Pessoas da ALEMS.
+            
+            <div class="mt-4 text-xs text-slate-500 dark:text-slate-400 text-left space-y-2">
+                <p>* Prazo para protocolar os títulos do AQ (Art. 5º do Regulamento IV, Anexo IV, Lei 6.278/2024): um título por vez, a cada 6 meses contados a partir da data do último protocolo. Para a ordem Doutorado → Mestrado → Especialização: o Doutorado pode ser protocolado a partir do 1º dia de efetivo exercício no cargo; o Mestrado, a partir de 6 meses após o protocolo do Doutorado; e a Especialização, a partir de 6 meses após o protocolo do Mestrado (ou seja, 12 meses após o início do exercício).</p>
+                <p>** As Referências 2 a 15 foram estimadas aplicando à tabela de 2024 o mesmo fator de reajuste apurado na Referência 1 da FCC (1,0506). Trate-os como estimativa, não como dado oficial confirmado.</p>
             </div>
-
         </div>
     </main>
 
     <script src="rodape.js?v=2"></script>
-
     <script>
-        const fmt=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
-        const mP=a=>{const r=[0,1,1,2,2,2,3,4,4,5,5,5,6,7,7,8,8,8,9,10,10,11,11,11,12,13,13,14],m=[1,1.03,1.0609,1.113945,1.147363,1.181784,1.240873,1.278099,1.316442,1.382264,1.423732,1.466444,1.539766,1.585959,1.633538];return m[r[Math.min(Math.max(0,a),27)]]};
-        const cIR=(b,d)=>{let bc=b-(d*189.59);if(bc<=5000)return 0;if(bc<=7350)return Math.max(0,(bc*.275)-908.73-(978.62-(.133145*bc)));return Math.max(0,(bc*.275)-908.73)};
+        const fmt = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
+
+        // Tabelas Base 2024 (Lei 6.279/2024)
+        const baseANLS = [3057.55, 3149.27, 3243.78, 3405.94, 3508.17, 3613.40, 3794.10, 3907.94, 4025.18, 4226.50, 4353.26, 4483.87, 4708.08, 4849.36, 4994.81];
+        const baseTCLS = [1870.25, 1926.34, 1984.16, 2083.40, 2145.88, 2210.30, 2320.81, 2390.46, 2462.19, 2585.30, 2662.87, 2742.77, 2879.96, 2966.30, 3055.35];
+
+        // Fator de atualização do Edital (3212.26 / 3057.55)
+        const fator = 3212.26 / 3057.55;
+
+        // Gerar tabelas estimadas multiplicadas pelo fator
+        const vencANLS = baseANLS.map(v => v * fator);
+        const vencTCLS = baseTCLS.map(v => v * fator);
         
-        const calc=()=>{
-            let cg=document.getElementById('cg').value,
-                an=parseInt(document.getElementById('an').value)||0,
-                dp=parseInt(document.getElementById('dp').value)||0,
-                ad=parseFloat(document.getElementById('ad').value);
-            
-            let iA=cg==='a', iP=cg==='p', qg=document.getElementById('qg');
-            
-            if(iA){qg.checked=false;qg.disabled=true}else{qg.disabled=false}
-            
-            let bC=iA?8437:5160.75,
-                bA=8437,
-                vP=(bC*mP(an))-bC,
-                bP=bC+vP,
-                vATS=bP*Math.min(an*.01,.40),
-                pAQ=0;
-            
-            if(qg.checked&&!iA)pAQ+=.10;
-            if(document.getElementById('qe1').checked)pAQ+=.10;
-            if(document.getElementById('qe2').checked)pAQ+=.10;
-            if(document.getElementById('qm').checked)pAQ+=.15;
-            if(document.getElementById('qd').checked)pAQ+=.20;
-            
-            let vAQ=bA*Math.min(pAQ,.40),
-                vAD=bA*ad,
-                vPE=0;
-            
-            document.getElementById('rpe').style.display=iP?'flex':'none';
-            if(iP)vPE=bC*.40;
-            
-            let vF=bP<=1819.26?dp*62.04:0,
-                vAX=3000,
-                rT=bP+vATS+vAQ+vAD+vPE,
-                rB=rT+vF+vAX,
-                vMS=rT*.14,
-                vIR=cIR(rT-vMS,dp),
-                rL=rB-vMS-vIR;
-            
-            document.getElementById('ob').innerText=fmt(bC);
-            document.getElementById('op').innerText=fmt(vP);
-            document.getElementById('oats').innerText=fmt(vATS);
-            document.getElementById('oaq').innerText=fmt(vAQ);
-            document.getElementById('oad').innerText=fmt(vAD);
-            
-            if(iP)document.getElementById('ope').innerText=fmt(vPE);
-            
-            document.getElementById('of').innerText=fmt(vF);
-            document.getElementById('oax').innerText=fmt(vAX);
-            document.getElementById('obr').innerText=fmt(rB);
-            document.getElementById('oms').innerText='- '+fmt(vMS);
-            document.getElementById('oir').innerText='- '+fmt(vIR);
-            document.getElementById('oli').innerText=fmt(rL);
+        // Garante a precisão do valor divulgado
+        vencANLS[0] = 3212.26; 
+
+        const refMap = [0,1,1,2,2,2,3,4,4,5,5,5,6,7,7,8,8,8,9,10,10,11,11,11,12,13,13,14];
+        const classLetters = ['A','B','C','D','E'];
+
+        const refIndex = an => refMap[Math.min(Math.max(0, an), 27)];
+        const classLabel = idx => `Classe ${classLetters[Math.floor(idx / 3)]} — Referência ${(idx % 3) + 1} (Ref. geral ${idx + 1}/15)`;
+
+        const cIR = (b, d) => {
+            let bc = b - (d * 189.59);
+            if (bc <= 5000) return 0;
+            if (bc <= 7350) return Math.max(0, (bc * .275) - 908.73 - (978.62 - (.133145 * bc)));
+            return Math.max(0, (bc * .275) - 908.73);
         };
-        
-        document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calc));
-        window.onload=calc;
+
+        const calc = () => {
+            let cg = document.getElementById('cg').value,
+                an = parseInt(document.getElementById('an').value) || 0,
+                dp = parseInt(document.getElementById('dp').value) || 0,
+                adIdx = parseFloat(document.getElementById('ad').value);
+
+            let iA = cg === 'a', iP = cg === 'p';
+            let qg = document.getElementById('qg');
+
+            let idx = refIndex(an),
+                tabela = iA ? vencANLS : vencTCLS,
+                vB1 = tabela[0],
+                vBAtual = tabela[idx],
+                vProg = vBAtual - vB1;
+
+            // Encargos Especiais (150% do Vencimento Básico Atual)
+            let vEE = vBAtual * 1.50; 
+            
+            // Adicional Tempo de Serviço (1% a.a até 40% sobre Vencimento + EE)
+            let baseFixaATS = vBAtual + vEE; 
+            let vATS = baseFixaATS * Math.min(an * .01, .40);
+
+            // Somatório Adicional Qualificação (Limitado a 40%) - Trava da Graduação removida
+            let pAQ = 0;
+            if (qg.checked) pAQ += .10;
+            if (document.getElementById('qe1').checked) pAQ += .10;
+            if (document.getElementById('qe2').checked) pAQ += .10;
+            if (document.getElementById('qm').checked) pAQ += .15;
+            if (document.getElementById('qd').checked) pAQ += .20;
+            pAQ = Math.min(pAQ, 0.40);
+
+            // Base de cálculo Fixa para AQ e AD (Vencimento ANLS Ref 1 + Encargos Especiais do ANLS)
+            let baseFixaAQAD = vencANLS[0] + (vencANLS[0] * 1.50); 
+            
+            let vAQ = baseFixaAQAD * pAQ;
+            let vAD = baseFixaAQAD * adIdx;
+
+            // Periculosidade para Polícia Legislativa (40% do Vencimento Básico)
+            let vPE = 0;
+            document.getElementById('rpe').style.display = iP ? 'flex' : 'none';
+            if (iP) vPE = vBAtual * 0.40;
+
+            // Auxílios Pecuniários
+            let vSaude = 800.00, 
+                vAliment = 1250.00, 
+                vTransp = 950.00,
+                vAux = vSaude + vAliment + vTransp;
+
+            let rT = vBAtual + vEE + vATS + vAQ + vAD + vPE, // Base Tributável
+                rB = rT + vAux,                              // Bruto
+                vMS = rT * .14,                              // MSPREV
+                vIR = cIR(rT - vMS, dp),                     // IRRF
+                rL = rB - vMS - vIR;                         // Líquido
+
+            // Atualização no DOM
+            document.getElementById('refInfo').innerText = classLabel(idx);
+            document.getElementById('ob').innerText = fmt(vB1);
+            document.getElementById('op').innerText = fmt(vProg);
+            document.getElementById('obc').innerText = fmt(vBAtual);
+            document.getElementById('oee').innerText = fmt(vEE);
+            document.getElementById('oats').innerText = fmt(vATS);
+            document.getElementById('oaq').innerText = fmt(vAQ);
+            document.getElementById('oad').innerText = fmt(vAD);
+
+            if (iP) document.getElementById('ope').innerText = fmt(vPE);
+
+            document.getElementById('oax').innerText = fmt(vSaude);
+            document.getElementById('oal').innerText = fmt(vAliment);
+            document.getElementById('otr').innerText = fmt(vTransp);
+            
+            document.getElementById('obr').innerText = fmt(rB);
+            document.getElementById('oms').innerText = '- ' + fmt(vMS);
+            document.getElementById('oir').innerText = '- ' + fmt(vIR);
+            document.getElementById('oli').innerText = fmt(rL);
+        };
+
+        document.querySelectorAll('input,select').forEach(i => i.addEventListener('input', calc));
+        window.onload = calc;
     </script>
 </body>
 </html>
