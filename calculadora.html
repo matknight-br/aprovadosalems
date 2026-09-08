@@ -30,7 +30,7 @@
 
         <div class="mb-8">
             <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-2">Simulador de Remuneração: ALEMS 2026</h2>
-            <p class="text-slate-600 dark:text-slate-300">Cálculo estruturado conforme a Lei 6.279/2024 e Lei 6.278/2024, considerando a projeção do Edital 2025.</p>
+            <p class="text-slate-600 dark:text-slate-300">Cálculo estruturado conforme as Leis 6.279/2024 e 6.278/2024, atualizado com a Revisão Geral Anual de 3,81% (Lei nº 6.562/2026).</p>
         </div>
         
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300 w-full">
@@ -63,7 +63,7 @@
                     <div class="flex flex-col gap-1">
                         <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Dependentes (Dedução no IRRF)</label>
                         <input type="number" id="dp" min="0" max="10" value="0" class="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-institucional-600 transition-shadow">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1">A legislação não prevê salário-família geral; afeta apenas a dedução de R$ 189,59 por dependente no cálculo do IRRF.</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1">Reduz R$ 189,59 da base de cálculo do imposto, gerando uma economia real de cerca de R$ 52,00 no valor retido por cada dependente.</span>
                     </div>
                     
                     <div class="flex flex-col gap-1">
@@ -146,7 +146,7 @@
             
             <div class="mt-4 text-xs text-slate-500 dark:text-slate-400 text-left space-y-2">
                 <p>* Prazo para protocolar os títulos do AQ (Art. 5º do Regulamento IV, Anexo IV, Lei 6.278/2024): um título por vez, a cada 6 meses contados a partir da data do último protocolo. Para a ordem Doutorado → Mestrado → Especialização: o Doutorado pode ser protocolado a partir do 1º dia de efetivo exercício no cargo; o Mestrado, a partir de 6 meses após o protocolo do Doutorado; e a Especialização, a partir de 6 meses após o protocolo do Mestrado (ou seja, 12 meses após o início do exercício).</p>
-                <p>** As Referências 2 a 15 foram estimadas aplicando à tabela de 2024 o mesmo fator de reajuste apurado na Referência 1 da FCC (1,0506). Trate-os como estimativa, não como dado oficial confirmado.</p>
+                <p>** As Referências 2 a 15 foram estimadas aplicando à tabela base as atualizações do Edital e o reajuste linear de 3,81% da Lei 6.562/2026. Trate-os como estimativa, não como dado oficial confirmado em folha.</p>
             </div>
         </div>
     </main>
@@ -155,19 +155,26 @@
     <script>
         const fmt = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 
-        // Tabelas Base 2024 (Lei 6.279/2024)
+        // Tabelas Base Originais 2024 (Lei 6.279/2024)
         const baseANLS = [3057.55, 3149.27, 3243.78, 3405.94, 3508.17, 3613.40, 3794.10, 3907.94, 4025.18, 4226.50, 4353.26, 4483.87, 4708.08, 4849.36, 4994.81];
         const baseTCLS = [1870.25, 1926.34, 1984.16, 2083.40, 2145.88, 2210.30, 2320.81, 2390.46, 2462.19, 2585.30, 2662.87, 2742.77, 2879.96, 2966.30, 3055.35];
 
-        // Fator de atualização do Edital (3212.26 / 3057.55)
-        const fator = 3212.26 / 3057.55;
+        // 1. Fator de atualização que já constava no Edital 2025
+        const fatorEdital = 3212.26 / 3057.55;
 
-        // Gerar tabelas estimadas multiplicadas pelo fator
-        const vencANLS = baseANLS.map(v => v * fator);
-        const vencTCLS = baseTCLS.map(v => v * fator);
+        // 2. Novo Reajuste Geral de 2026 (Lei 6.562/2026 - 3,81%)
+        const reajuste2026 = 1.0381;
+
+        // Fator Acumulado Total
+        const fatorTotal = fatorEdital * reajuste2026;
+
+        // Gerar tabelas estimadas finais
+        const vencANLS = baseANLS.map(v => v * fatorTotal);
+        const vencTCLS = baseTCLS.map(v => v * fatorTotal);
         
-        // Garante a precisão do valor divulgado
-        vencANLS[0] = 3212.26; 
+        // Garante a precisão milimétrica da Ref 1 do ANLS após o novo reajuste
+        // 3212.26 (Edital) * 1.0381 (Lei 6562/26) = 3334.6471...
+        vencANLS[0] = 3212.26 * reajuste2026; 
 
         const refMap = [0,1,1,2,2,2,3,4,4,5,5,5,6,7,7,8,8,8,9,10,10,11,11,11,12,13,13,14];
         const classLetters = ['A','B','C','D','E'];
@@ -204,7 +211,7 @@
             let baseFixaATS = vBAtual + vEE; 
             let vATS = baseFixaATS * Math.min(an * .01, .40);
 
-            // Somatório Adicional Qualificação (Limitado a 40%) - Trava da Graduação removida
+            // Somatório Adicional Qualificação (Limitado a 40%)
             let pAQ = 0;
             if (qg.checked) pAQ += .10;
             if (document.getElementById('qe1').checked) pAQ += .10;
@@ -213,7 +220,7 @@
             if (document.getElementById('qd').checked) pAQ += .20;
             pAQ = Math.min(pAQ, 0.40);
 
-            // Base de cálculo Fixa para AQ e AD (Vencimento ANLS Ref 1 + Encargos Especiais do ANLS)
+            // Base de cálculo Fixa para AQ e AD (Vencimento ANLS Ref 1 ATUALIZADO + EE do ANLS)
             let baseFixaAQAD = vencANLS[0] + (vencANLS[0] * 1.50); 
             
             let vAQ = baseFixaAQAD * pAQ;
@@ -224,14 +231,14 @@
             document.getElementById('rpe').style.display = iP ? 'flex' : 'none';
             if (iP) vPE = vBAtual * 0.40;
 
-            // Auxílios Pecuniários
+            // Auxílios Pecuniários (Mantidos Fixos conforme instrução)
             let vSaude = 800.00, 
                 vAliment = 1250.00, 
                 vTransp = 950.00,
                 vAux = vSaude + vAliment + vTransp;
 
             let rT = vBAtual + vEE + vATS + vAQ + vAD + vPE, // Base Tributável
-                rB = rT + vAux,                              // Bruto
+                rB = rT + vAux,                              // Bruto Total
                 vMS = rT * .14,                              // MSPREV
                 vIR = cIR(rT - vMS, dp),                     // IRRF
                 rL = rB - vMS - vIR;                         // Líquido
