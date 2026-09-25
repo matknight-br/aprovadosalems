@@ -140,8 +140,8 @@
                             <label for="optCAD" class="text-sm font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Membro Comissão de Avaliação (CAD) (+20%)</label>
                         </div>
                         <div class="flex items-center gap-3">
-                            <input type="checkbox" id="optGAES" class="w-4 h-4 accent-institucional-600 rounded">
-                            <label for="optGAES" class="text-sm font-medium text-slate-700 dark:text-slate-300 cursor-pointer">Escala de Segurança Extraordinária (GAES)</label>
+                            <input type="checkbox" id="optGAES" class="w-4 h-4 accent-institucional-600 rounded disabled:cursor-not-allowed">
+                            <label for="optGAES" id="lblGAES" class="text-sm font-medium text-slate-700 dark:text-slate-300 cursor-pointer transition-opacity">Escala de Segurança Extraordinária (GAES)</label>
                         </div>
                         <div class="flex items-center gap-3 mt-2 border-t border-slate-300 dark:border-slate-600 pt-3">
                             <input type="checkbox" id="optCassems" class="w-4 h-4 accent-red-600 rounded" checked>
@@ -234,7 +234,20 @@
             
             // Checkboxes Especiais
             let isCad = document.getElementById('optCAD').checked;
-            let isGaes = document.getElementById('optGAES').checked;
+            
+            // Controle e Trava do GAES (Ativo apenas para Polícia)
+            let optGAES = document.getElementById('optGAES');
+            let lblGAES = document.getElementById('lblGAES');
+            
+            if (!iP) {
+                optGAES.checked = false;
+                optGAES.disabled = true;
+                lblGAES.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                optGAES.disabled = false;
+                lblGAES.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            let isGaes = optGAES.checked;
             let isCassems = document.getElementById('optCassems').checked;
 
             // Lógica do Adicional de Qualificação (AQ)
@@ -291,7 +304,7 @@
             if (isCad) vCAD = arredondar(subtotal * 0.20);
             if (isGaes) vGAES = arredondar(vB1_ANLS * 0.40);
 
-            // Auxílios congelados (Não reajustam os 3,81% a pedido)
+            // Auxílios congelados
             let vSaude = 800.00, vAliment = 1250.00, vTransp = 950.00;
             let vAux = arredondar(vSaude + vAliment + vTransp);
 
