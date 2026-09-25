@@ -32,7 +32,7 @@
 
         <div class="mb-8">
             <h2 class="text-2xl md:text-3xl font-bold text-institucional-900 dark:text-institucional-100 mb-2">Simulador de Remuneração: Transparência ALEMS</h2>
-            <p class="text-slate-600 dark:text-slate-300">Cálculo estruturado com reajuste de 3,81%, regras de Anuênio corrigidas e análise fiel ao contracheque legislativo.</p>
+            <p class="text-slate-600 dark:text-slate-300">Cálculo estruturado com a nova Tabela de Retribuição Salarial (Referências de 1 a 15) e regras de Anuênio corrigidas.</p>
         </div>
         
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 transition-colors duration-300 w-full flex flex-col lg:flex-row gap-8">
@@ -184,7 +184,7 @@
                 </div>
 
                 <div class="mt-auto pt-6 text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-justify space-y-2">
-                    <p><strong>Nota de Transparência:</strong> O cálculo previdenciário (MS-PREV) incide apenas sobre verbas de caráter permanente (Base, Encargos, ATS e AQ). Adicionais de desempenho, gratificações transitórias (CAD, GAES) e periculosidade são takes isentos dessa contribuição, conforme verificado nos contracheques da Casa.</p>
+                    <p><strong>Nota de Transparência:</strong> O cálculo previdenciário (MS-PREV) incide apenas sobre verbas de caráter permanente (Base, Encargos, ATS e AQ). Adicionais de desempenho, gratificações transitórias (CAD, GAES) e periculosidade são parcelas isentas dessa contribuição. O Adicional de Qualificação e Desempenho utiliza a referência ANLS 1 em sua base.</p>
                 </div>
             </div>
         </div>
@@ -196,11 +196,11 @@
     <script>
         const fmt = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 
-        // Tabelas Base sem Reajuste
-        const baseANLS = [3057.55, 3149.27, 3243.78, 3405.94, 3508.17, 3613.40, 3794.10, 3907.94, 4025.18, 4226.50, 4353.26, 4483.87, 4708.08, 4849.36, 4994.81];
-        const baseTCLS = [1870.25, 1926.34, 1984.16, 2083.40, 2145.88, 2210.30, 2320.81, 2390.46, 2462.19, 2585.30, 2662.87, 2742.77, 2879.96, 2966.30, 3055.35];
+        // Tabelas Base exatas extraídas da imagem Tabela VIII (já consolidadas)
+        const baseANLS = [3334.65, 3434.68, 3537.76, 3714.61, 3826.10, 3940.88, 4137.95, 4262.11, 4389.97, 4609.54, 4747.78, 4890.23, 5134.76, 5288.85, 5447.48];
+        const baseTCLS = [2039.74, 2100.92, 2163.98, 2272.21, 2340.35, 2410.61, 2531.14, 2607.11, 2685.34, 2819.60, 2904.20, 2991.34, 3140.97, 3235.12, 3332.25];
 
-        const REAJUSTE = 1.0381; // 3,81%
+        const REAJUSTE = 1.0; // Multiplicador removido pois os valores da imagem já englobam todos os reajustes.
 
         // Preenche o Select de Referências
         window.onload = () => {
